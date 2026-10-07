@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://mpi-lamartin.github.io/mpi-info/sitemap.xml
+Sitemap: https://mpi-informatique.github.io/cours/sitemap.xml

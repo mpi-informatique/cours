@@ -12,15 +12,15 @@ const config: Config = {
   trailingSlash: false,
 
   // Set the production url of your site here
-  url: "https://mpi-lamartin.github.io",
+  url: "https://mpi-informatique.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/mpi-info/",
+  baseUrl: "/cours/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "mpi-lamartin", // Usually your GitHub org/user name.
-  projectName: "mpi-info", // Usually your repo name.
+  organizationName: "mpi-informatique", // Usually your GitHub org/user name.
+  projectName: "cours", // Usually your repo name.
 
   onBrokenLinks: "throw",
   markdown: {
@@ -54,7 +54,7 @@ const config: Config = {
           routeBasePath: "/",
           blogTitle: "Informatique MPI",
           onUntruncatedBlogPosts: "ignore",
-          editUrl: "https://github.com/mpi-lamartin/mpi-info",
+          editUrl: "https://github.com/mpi-informatique/cours",
         },
 
         theme: {
@@ -185,7 +185,7 @@ const config: Config = {
           position: "right",
         },
         {
-          href: "https://github.com/mpi-lamartin/mpi-info",
+          href: "https://github.com/mpi-informatique/cours",
           "aria-label": "GitHub repository",
           className: "header-github-link",
           position: "right",
