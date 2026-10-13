@@ -832,7 +832,7 @@ export const questions = [
     question: "Le lemme de l'étoile :",
     answers: [
       "Permet de choisir la décomposition $u = xyz$",
-      "S'applique aux langages hors-contextes",
+      "S'applique aux langages non-contextuels",
       "Permet de prouver qu'un langage n'est pas régulier",
       "Permet de prouver qu'un langage est régulier",
     ],
@@ -840,7 +840,7 @@ export const questions = [
     explanation: [
       "Le lemme de l'étoile est utilisé par l'absurde pour prouver qu'un langage n'est pas régulier. ",
       "La réciproque est fausse donc on ne peut pas prouver qu'un langage est régulier avec ce lemme. ",
-      "Il est faux pour les langages hors-contextes généraux, qui ont un lemme de l'étoile différent.",
+      "Il est faux pour les langages non-contextuels généraux, qui ont un lemme de l'étoile différent.",
     ].join("\n"),
     mp2i: false,
   },
@@ -1198,7 +1198,7 @@ export const questions = [
     mp2i: false,
   },
   {
-    question: "Quels sont les langages hors-contextes ?",
+    question: "Quels sont les langages non-contextuels ?",
     answers: [
       "$\\{a^n b^p \\mid n, p \\in \\mathbb{N}\\}$",
       "$\\{a^n b^n \\mid n \\in \\mathbb{N}\\}$",
@@ -1207,10 +1207,10 @@ export const questions = [
     ],
     correct: [0, 1, 2],
     explanation: [
-      "Le premier est régulier donc hors-contexte.",
+      "Le premier est régulier donc non-contextuel.",
       "Le second est engendré par $S \\Longrightarrow aSb \\mid \\epsilon$.",
       "Le troisième est engendré par $S \\Longrightarrow aSb \\mid bS \\mid \\epsilon$.",
-      "Le quatrième n'est pas hors-contexte par le lemme de l'étoile pour les langages hors-contextes (voir TD).",
+      "Le quatrième n'est pas non-contextuel par le lemme de l'étoile pour les langages non-contextuels (voir TD).",
     ].join("\n"),
     mp2i: false,
   },
@@ -1239,7 +1239,7 @@ export const questions = [
     ],
     correct: [1, 2, 3, 7],
     explanation: [
-      "Les langages hors-contextes sont stables par union, concaténation, étoile, miroir (cours).",
+      "Les langages non-contextuels sont stables par union, concaténation, étoile, miroir (cours).",
       "Ils ne sont pas stables par intersection, complémentaire ou différence (voir TD) ni par inclusion.",
     ].join("\n"),
     mp2i: false,

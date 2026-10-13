@@ -3,6 +3,7 @@
 ## Langue et portée
 
 - Travailler en français sauf demande contraire.
+- Employer « non-contextuel » pour les langages et « non-contextuelle » pour les grammaires, avec les accords nécessaires, plutôt que « hors-contexte » ou « algébrique ».
 - Préserver les fichiers existants et ne modifier que les éléments nécessaires à la demande.
 
 ## Travaux pratiques
