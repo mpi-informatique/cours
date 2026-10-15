@@ -9,5 +9,3 @@ nix develop
 npm install
 npm run start
 ```
-
-Le serveur est alors disponible sur <http://localhost:3000/cours/>.# Cours d'informatique en MPI au lycée la Martinière Monplaisir
