@@ -53,7 +53,7 @@ Pour avoir $X_i \Rightarrow^* u_{d} \ldots u_{d + l - 1}$, il faut que $X_i \to 
 <summary>Solution (pour vérifier votre réponse)</summary>
 
 $$
-t[l][d][i] = {\bigvee_{\substack{X_i \rightarrow X_j X_k}} \bigvee_{p = 1}^{l-1} t[p][d][j] \land t[l-p]\underbrace{[d+m]}_{\text{si }d + p < n}[k]}
+t[l][d][i] = {\bigvee_{\substack{X_i \rightarrow X_j X_k}} \bigvee_{p = 1}^{l-1} t[p][d][j] \land t[l-p]\underbrace{[d+p]}_{\text{si }d + p < n}[k]}
 $$
 
 </details>
