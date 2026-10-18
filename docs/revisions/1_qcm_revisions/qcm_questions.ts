@@ -932,7 +932,7 @@ export const questions = [
   {
     question: "L'arbre de Huffman garantit :",
     answers: [
-      "Toutes les lettres ont un code de même longueur",
+      "Toutes les lettres ont un code de même taille",
       "Les lettres les plus fréquentes ont un code court ",
       "L'arbre est équilibré",
       "Une compression optimale",
@@ -940,7 +940,7 @@ export const questions = [
     ],
     correct: [1, 3, 4],
     explanation:
-      "Le codage de Huffman est un codage préfixe (aucun code n'est préfixe d'un autre) qui minimise la longueur moyenne.",
+      "Le codage de Huffman est un codage préfixe (aucun code n'est préfixe d'un autre) qui minimise la taille moyenne.",
     mp2i: true,
   },
   {

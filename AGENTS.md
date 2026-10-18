@@ -4,6 +4,7 @@
 
 - Travailler en français sauf demande contraire.
 - Employer « non-contextuel » pour les langages et « non-contextuelle » pour les grammaires, avec les accords nécessaires, plutôt que « hors-contexte » ou « algébrique ».
+- Employer « taille » pour le nombre de lettres d'un mot, y compris pour ses préfixes, suffixes et facteurs.
 - Préserver les fichiers existants et ne modifier que les éléments nécessaires à la demande.
 
 ## Travaux pratiques

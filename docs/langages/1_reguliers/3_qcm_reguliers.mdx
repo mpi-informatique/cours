@@ -26,19 +26,19 @@ import QCM from "@site/src/components/QCM";
       answers: [
         "$\\varepsilon$ est une lettre présente dans tout alphabet",
         "$\\varepsilon$ est le langage vide",
-        "$\\varepsilon$ est le mot vide, de longueur $0$",
+        "$\\varepsilon$ est le mot vide, de taille $0$",
         "$\\varepsilon$ est l'ensemble de tous les mots",
       ],
       correct: 2,
       explanation:
-        "$\\varepsilon$ désigne le mot vide : il ne contient aucune lettre et sa longueur est nulle. Ce n'est ni une lettre ni le langage vide $\\emptyset$.",
+        "$\\varepsilon$ désigne le mot vide : il ne contient aucune lettre et sa taille est nulle. Ce n'est ni une lettre ni le langage vide $\\emptyset$.",
     },
     {
       question: "Que désigne $\\Sigma^*$ ?",
       answers: [
         "L'ensemble des mots non vides sur $\\Sigma$",
         "L'ensemble de tous les mots sur $\\Sigma$, y compris $\\varepsilon$",
-        "L'ensemble des mots de longueur $1$",
+        "L'ensemble des mots de taille $1$",
         "L'alphabet privé d'une lettre",
       ],
       correct: 1,
@@ -83,7 +83,7 @@ import QCM from "@site/src/components/QCM";
         "Il est fini",
         "Il contient le mot vide",
         "Il peut être décrit par une expression régulière",
-        "Tous ses mots ont la même longueur",
+        "Tous ses mots ont la même taille",
       ],
       correct: 2,
       explanation:
@@ -95,20 +95,20 @@ import QCM from "@site/src/components/QCM";
       answers: ["$\\varepsilon$", "$ab$", "$aba$", "$c$"],
       correct: 2,
       explanation:
-        "$\\Sigma^+$ contient tous les mots non vides sur $\\Sigma$, tandis que $\\Sigma^2$ ne contient que ceux de longueur $2$. Ainsi, $aba$ convient.",
+        "$\\Sigma^+$ contient tous les mots non vides sur $\\Sigma$, tandis que $\\Sigma^2$ ne contient que ceux de taille $2$. Ainsi, $aba$ convient.",
     },
     {
       question:
         "Pour $u=ab$ et $v=aba$, quelle affirmation décrit correctement $uv$ et $vu$ ?",
       answers: [
         "$uv=vu$ car la concaténation est commutative",
-        "$uv$ et $vu$ ont des longueurs différentes",
-        "$uv=ababa$ et $vu=abaab$ : ils ont la même longueur mais sont distincts",
-        "$uv$ n'est pas défini car $u$ et $v$ n'ont pas la même longueur",
+        "$uv$ et $vu$ ont des tailles différentes",
+        "$uv=ababa$ et $vu=abaab$ : ils ont la même taille mais sont distincts",
+        "$uv$ n'est pas défini car $u$ et $v$ n'ont pas la même taille",
       ],
       correct: 2,
       explanation:
-        "$uv=ababa$ et $vu=abaab$. La concaténation conserve la somme des longueurs, mais elle n'est pas commutative.",
+        "$uv=ababa$ et $vu=abaab$. La concaténation conserve la somme des tailles, mais elle n'est pas commutative.",
     },
     {
       question: "Dans le mot $m=aabacb$, le mot $u=abc$ est :",
@@ -266,16 +266,16 @@ import QCM from "@site/src/components/QCM";
     },
     {
       question:
-        "Quel ensemble de longueurs est décrit par $(a|b)((a|b)(a|b)(a|b))^*$ ?",
+        "Quel ensemble de tailles est décrit par $(a|b)((a|b)(a|b)(a|b))^*$ ?",
       answers: [
-        "Les longueurs multiples de $3$",
-        "Les longueurs congrues à $1$ modulo $3$",
-        "Les longueurs congrues à $2$ modulo $3$",
-        "Toutes les longueurs strictement positives",
+        "Les tailles multiples de $3$",
+        "Les tailles congrues à $1$ modulo $3$",
+        "Les tailles congrues à $2$ modulo $3$",
+        "Toutes les tailles strictement positives",
       ],
       correct: 1,
       explanation:
-        "Le premier facteur fournit une lettre, puis chaque répétition étoilée en ajoute trois. Les longueurs sont donc exactement $1+3k$ avec $k\\in\\mathbb{N}$.",
+        "Le premier facteur fournit une lettre, puis chaque répétition étoilée en ajoute trois. Les tailles sont donc exactement $1+3k$ avec $k\\in\\mathbb{N}$.",
     },
     {
       question:
