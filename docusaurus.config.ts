@@ -17,6 +17,10 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/cours/",
 
+  customFields: {
+    exercicesWebUrl: process.env.EXERCICES_WEB_URL || "https://mpi-informatique.github.io/exercices",
+  },
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "mpi-informatique", // Usually your GitHub org/user name.
