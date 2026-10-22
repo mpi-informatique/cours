@@ -102,7 +102,7 @@ export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSy
       if (item.children) {
         const childDirectory = join(directory, item.id);
         mkdirSync(childDirectory, { recursive: true });
-        writeFileSync(join(childDirectory, '_category_.json'), JSON.stringify({ label: item.title, position: index + 1, collapsed: false }, null, 2) + '\n');
+        writeFileSync(join(childDirectory, '_category_.json'), JSON.stringify({ label: item.title, position: index + 1, collapsed: true }, null, 2) + '\n');
         writeItems(item.children, childDirectory);
       } else if (!item.docId && !item.href) {
         const frontMatter = [
@@ -119,7 +119,7 @@ export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSy
   writeItems(categories, output);
   function sidebarItems(items, parentPath) {
     return items.map(item => {
-      if (item.children) return { type: 'category', label: item.title, collapsed: false, items: sidebarItems(item.children, `${parentPath}/${item.id}`) };
+      if (item.children) return { type: 'category', label: item.title, collapsed: true, items: sidebarItems(item.children, `${parentPath}/${item.id}`) };
       if (item.href) return { type: 'link', label: item.title, href: item.href };
       if (item.docId) return { type: 'doc', label: item.title, id: item.docId };
       return { type: 'doc', id: `${parentPath}/${item.id}` };

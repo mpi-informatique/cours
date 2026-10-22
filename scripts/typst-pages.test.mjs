@@ -66,9 +66,9 @@ test('Les menus de navigation et les catégories imbriquées suivent le Markdown
     const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
     assert.deepEqual(navigation, {
       sidebars: {
-        langages: [{ type: 'category', label: 'Langages réguliers', collapsed: false, items: [
+        langages: [{ type: 'category', label: 'Langages réguliers', collapsed: true, items: [
           { type: 'doc', id: 'typst/langages/langages-reguliers/cours-langages-reguliers' },
-          { type: 'category', label: 'Exercices', collapsed: false, items: [{ type: 'doc', id: 'typst/langages/langages-reguliers/exercices/td-langage' }] },
+          { type: 'category', label: 'Exercices', collapsed: true, items: [{ type: 'doc', id: 'typst/langages/langages-reguliers/exercices/td-langage' }] },
         ] }],
         graphes: [{ type: 'doc', id: 'typst/graphes/parcours' }],
       },
@@ -80,6 +80,7 @@ test('Les menus de navigation et les catégories imbriquées suivent le Markdown
     const category = JSON.parse(readFileSync(join(root, 'docs/typst/langages/langages-reguliers/_category_.json'), 'utf8'));
     assert.equal(category.label, 'Langages réguliers');
     assert.equal(category.position, 1);
+    assert.equal(category.collapsed, true);
     const course = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/cours-langages-reguliers.mdx'), 'utf8');
     assert.match(course, /title: "Langages réguliers"/);
     assert.match(course, /sidebar_position: 1/);
