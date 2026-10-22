@@ -10,9 +10,9 @@ npm install
 npm run start
 ```
 
-## Démonstration du lecteur Typst
+## Lecteur Typst
 
-La page `/cours/docs/poc-langages-reguliers` intègre le lecteur PDF de la banque d'exercices pour `cours-langages-reguliers.typ`. La présentation s'ouvre par défaut. Le lecteur occupe tout l'espace disponible sous la navigation, suit le thème du site sans recompiler et propose un bouton de présentation en plein écran.
+Le menu **Langages**, défini dans `pages-typst.md`, intègre le lecteur PDF de la banque d'exercices pour `cours-langages-reguliers.typ`. La présentation s'ouvre par défaut. Le lecteur occupe tout l'espace disponible sous la navigation, suit le thème du site sans recompiler et propose un bouton de présentation en plein écran.
 
 Pour essayer avec les deux sites locaux, démarrer `just web` depuis le dépôt voisin `exercices`, puis lancer ici :
 
@@ -20,17 +20,20 @@ Pour essayer avec les deux sites locaux, démarrer `just web` depuis le dépôt 
 EXERCICES_WEB_URL=http://127.0.0.1:4321 nix develop -c npm run start
 ```
 
-Ouvrir <http://127.0.0.1:3000/cours/docs/poc-langages-reguliers>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
+Ouvrir <http://127.0.0.1:3000/cours/docs/typst/langages/langages-reguliers/cours-langages-reguliers>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
 
 ## Définir les pages en Markdown
 
-Modifier `pages-typst.md` pour définir les rubriques et l'ordre des documents du menu **Cours Typst** :
+Modifier `pages-typst.md` pour définir les menus de navigation, les rubriques de la sidebar et l'ordre des documents :
 
 ```markdown
-- Langages :
-  - cours-langages-reguliers
-  - td-langage: cor
+- Langages
+  - Langages réguliers
+    - cours-langages-reguliers
+    - td-langage: cor
 ```
+
+Le premier niveau crée les menus de la barre de navigation. Les niveaux intermédiaires créent les catégories de la sidebar ; leur imbrication est libre, avec deux espaces par niveau. Les dernières entrées désignent les documents.
 
 Les identifiants sont ceux de la banque d'exercices, sans extension `.typ`. Le libellé de la sidebar reprend automatiquement le titre déclaré dans le fichier Typst. `cor` ajoute le corrigé au lecteur et le bouton « corrigé » au menu, avec l'énoncé à l'ouverture d'un TD. Sans `cor`, le lecteur de la page ne propose pas la variante corrigée. Les ressources restent publiques dans la banque ; ce réglage définit l'interface, pas une restriction d'accès. Un cours proposant une présentation s'ouvre sur celle-ci ; les autres documents s'ouvrent sur leur énoncé.
 
@@ -40,7 +43,7 @@ Les titres proviennent de `banque/catalogue.json`, exporté par la banque à par
 
 Le lecteur charge des PDF précompilés lors de la préparation de la banque. Il n'initialise pas le compilateur Typst dans le navigateur. La présentation est préchargée en arrière-plan pendant la lecture du cours écrit. En plein écran, seule la page PDF est visible ; Échap quitte la présentation et les flèches ou Espace changent de page.
 
-`npm run start` et `npm run build` génèrent les pages dans `docs/typst/`, ignoré par Git. Relancer le serveur après une modification du menu. Les pages sont accessibles sous `/cours/docs/typst/<rubrique>/<identifiant>`. Les anciens cours restent disponibles dans leurs rubriques.
+`npm run start` et `npm run build` génèrent les pages dans `docs/typst/`, ignoré par Git. Relancer le serveur après une modification du menu. Les pages sont accessibles sous `/cours/docs/typst/<menu>/<rubriques>/<identifiant>`. Les anciens documents Langages restent accessibles à leurs adresses existantes, mais leur sidebar est remplacée par celle définie dans le Markdown.
 
 Pour intégrer manuellement un document dans une page MDX, importer `@site/src/components/TypstPdf` et utiliser `<TypstPdf id="cours-kleene" title="Théorème de Kleene" />`, avec `hide_title: true`, `hide_table_of_contents: true` et `typst: true` dans l'en-tête. La propriété facultative `variant` accepte `enonce`, `corrige` ou `presentation` ; `correction={true}` propose aussi le corrigé.
 

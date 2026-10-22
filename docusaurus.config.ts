@@ -1,3 +1,4 @@
+import typstNavigation from "./docs/typst/navigation.json";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
@@ -108,12 +109,6 @@ const config: Config = {
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "typst",
-          label: "Cours Typst",
-          position: "left",
-        },
-        {
           href: "https://mpi-informatique.github.io/",
           label: "MPI",
           position: "right",
@@ -144,12 +139,7 @@ const config: Config = {
         //   position: "left",
         //   label: "Rappels",
         // },
-        {
-          type: "doc",
-          docId: "langages/reguliers/reguliers",
-          position: "left",
-          label: "Langages",
-        },
+        ...(typstNavigation.navbar as NonNullable<Preset.ThemeConfig["navbar"]>["items"]),
         // {
         //   type: "doc",
         //   docId: "graphes/revisions/revisions",

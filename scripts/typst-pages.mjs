@@ -6,30 +6,44 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const slug = value => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export function parsePages(markdown) {
-  const categories = [];
+  const lines = markdown.split(/\r?\n/).flatMap((line, index) => {
+    if (!line.trim() || /^#/.test(line)) return [];
+    const match = line.match(/^( *)- (.+?)\s*$/);
+    if (!match || match[1].length % 2) throw new Error(`Ligne ${index + 1} : utiliser une liste Markdown avec deux espaces par niveau.`);
+    return [{ depth: match[1].length / 2, text: match[2], line: index + 1 }];
+  });
   const identifiers = new Set();
-  const categoryIds = new Set();
-  let category;
-  for (const [index, line] of markdown.split(/\r?\n/).entries()) {
-    if (!line.trim() || /^#/.test(line)) continue;
-    const section = line.match(/^- (.+?)\s*:\s*$/);
-    const entry = line.match(/^  - (?:\[([^\]]+)\]\(([a-z0-9][a-z0-9-]*)\)|([a-z0-9][a-z0-9-]*))(?:\s*:\s*(cor))?\s*$/);
-    if (section) {
-      const id = slug(section[1]);
-      if (!id || categoryIds.has(id)) throw new Error(`Ligne ${index + 1} : rubrique vide ou dupliquée.`);
-      categoryIds.add(id);
-      category = { id, title: section[1].trim(), pages: [] };
-      categories.push(category);
-    } else if (entry && category) {
-      const id = entry[2] || entry[3];
-      if (identifiers.has(id)) throw new Error(`Ligne ${index + 1} : document dupliqué (${id}).`);
-      identifiers.add(id);
-      category.pages.push({ id, title: entry[1], correction: entry[4] === 'cor' });
-    } else {
-      throw new Error(`Ligne ${index + 1} : utiliser « - Rubrique : » puis «   - identifiant » ou «   - identifiant: cor ».`);
+  let cursor = 0;
+  function readLevel(depth) {
+    const items = [];
+    const siblingIds = new Set();
+    while (cursor < lines.length && lines[cursor].depth >= depth) {
+      const line = lines[cursor++];
+      if (line.depth !== depth) throw new Error(`Ligne ${line.line} : niveau d'indentation manquant.`);
+      let item;
+      if (depth === 0 || lines[cursor]?.depth > depth) {
+        const title = line.text.replace(/\s*:\s*$/, '').trim();
+        const id = slug(title);
+        if (!id || /[\[\]:]/.test(title)) throw new Error(`Ligne ${line.line} : titre de rubrique invalide.`);
+        const children = readLevel(depth + 1);
+        if (!children.length) throw new Error(`Ligne ${line.line} : chaque rubrique doit contenir au moins un document.`);
+        item = { id, title, children };
+      } else {
+        const entry = line.text.match(/^(?:\[([^\]]+)\]\(([a-z0-9][a-z0-9-]*)\)|([a-z0-9][a-z0-9-]*))(?:\s*:\s*(cor))?$/);
+        if (!entry) throw new Error(`Ligne ${line.line} : utiliser un identifiant de document, éventuellement suivi de « : cor ».`);
+        const id = entry[2] || entry[3];
+        if (identifiers.has(id)) throw new Error(`Ligne ${line.line} : document dupliqué (${id}).`);
+        identifiers.add(id);
+        item = { id, title: entry[1], correction: entry[4] === 'cor' };
+      }
+      if (siblingIds.has(item.id)) throw new Error(`Ligne ${line.line} : identifiant dupliqué (${item.id}).`);
+      siblingIds.add(item.id);
+      items.push(item);
     }
+    return items;
   }
-  if (!categories.length || categories.some(category => !category.pages.length)) throw new Error('Chaque rubrique doit contenir au moins un document.');
+  const categories = readLevel(0);
+  if (!categories.length) throw new Error('Le menu doit contenir au moins une rubrique.');
   return categories;
 }
 
@@ -63,34 +77,51 @@ export async function loadCatalogue(siteRoot = root) {
 export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8'))) {
   const categories = parsePages(readFileSync(join(siteRoot, 'pages-typst.md'), 'utf8'));
   const titles = new Map(validateCatalogue(catalogue).map(entry => [entry.id, entry.titre]));
-  for (const category of categories) for (const page of category.pages) {
-    if (!titles.has(page.id)) throw new Error(`Document absent du catalogue Typst : ${page.id}`);
-    page.title ??= titles.get(page.id);
-  }
-  const output = join(siteRoot, 'docs/typst');
-  rmSync(output, { recursive: true, force: true });
-  for (const [categoryIndex, category] of categories.entries()) {
-    const directory = join(output, category.id);
-    mkdirSync(directory, { recursive: true });
-    writeFileSync(join(directory, '_category_.json'), JSON.stringify({ label: category.title, position: categoryIndex + 1, collapsed: false }, null, 2) + '\n');
-    for (const [pageIndex, page] of category.pages.entries()) {
-      const frontMatter = [
-        `title: ${JSON.stringify(page.title)}`,
-        `sidebar_position: ${pageIndex + 1}`,
-        `sidebar_custom_props: {cor: ${page.correction}}`,
-        'hide_title: true', 'hide_table_of_contents: true', 'typst: true',
-      ].join('\n');
-      const component = `<TypstPdf id={${JSON.stringify(page.id)}} title={${JSON.stringify(page.title)}} correction={${page.correction}} />`;
-      writeFileSync(join(directory, `${page.id}.mdx`), `---\n${frontMatter}\n---\n\nimport TypstPdf from '@site/src/components/TypstPdf';\n\n${component}\n`);
+  function resolveTitles(items) {
+    for (const item of items) {
+      if (item.children) resolveTitles(item.children);
+      else {
+        if (!titles.has(item.id)) throw new Error(`Document absent du catalogue Typst : ${item.id}`);
+        item.title ??= titles.get(item.id);
+      }
     }
   }
+  resolveTitles(categories);
+  const output = join(siteRoot, 'docs/typst');
+  rmSync(output, { recursive: true, force: true });
+  mkdirSync(output, { recursive: true });
+  function writeItems(items, directory) {
+    for (const [index, item] of items.entries()) {
+      if (item.children) {
+        const childDirectory = join(directory, item.id);
+        mkdirSync(childDirectory, { recursive: true });
+        writeFileSync(join(childDirectory, '_category_.json'), JSON.stringify({ label: item.title, position: index + 1, collapsed: false }, null, 2) + '\n');
+        writeItems(item.children, childDirectory);
+      } else {
+        const frontMatter = [
+          `title: ${JSON.stringify(item.title)}`,
+          `sidebar_position: ${index + 1}`,
+          `sidebar_custom_props: {cor: ${item.correction}}`,
+          'hide_title: true', 'hide_table_of_contents: true', 'typst: true',
+        ].join('\n');
+        const component = `<TypstPdf id={${JSON.stringify(item.id)}} title={${JSON.stringify(item.title)}} correction={${item.correction}} />`;
+        writeFileSync(join(directory, `${item.id}.mdx`), `---\n${frontMatter}\n---\n\nimport TypstPdf from '@site/src/components/TypstPdf';\n\n${component}\n`);
+      }
+    }
+  }
+  writeItems(categories, output);
+  const navigation = {
+    sidebars: Object.fromEntries(categories.map(category => [category.id, [{ type: 'autogenerated', dirName: `typst/${category.id}` }]])),
+    navbar: categories.map(category => ({ type: 'docSidebar', sidebarId: category.id, label: category.title, position: 'left' })),
+  };
+  writeFileSync(join(output, 'navigation.json'), JSON.stringify(navigation, null, 2) + '\n');
   return categories;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const catalogue = await loadCatalogue();
-  const categories = generatePages(root, catalogue);
+  generatePages(root, catalogue);
   // Cette copie permet aussi de construire le site sans accès réseau.
   writeFileSync(join(root, 'typst-catalogue.json'), JSON.stringify(catalogue.map(({ id, titre }) => ({ id, titre })), null, 2) + '\n');
-  console.log(`Pages Typst : ${categories.reduce((count, category) => count + category.pages.length, 0)} documents.`);
+  console.log("Pages et navigation Typst générées depuis pages-typst.md.");
 }
