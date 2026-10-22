@@ -67,6 +67,16 @@
   margin-bottom: 0;
 }
 
+.main-wrapper:has(.typst-doc-layout) main,
+.main-wrapper:has(.typst-doc-layout) main > .container {
+  max-width: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.typst-doc-layout { height: calc(100dvh - var(--ifm-navbar-height)); }
+.typst-doc-layout > .markdown { height: 100%; }
+
 .navbar__link.header-github-link {
   display: flex;
   align-items: center;

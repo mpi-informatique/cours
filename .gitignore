@@ -9,6 +9,7 @@ a.out
 
 # Production
 /build
+/docs/typst/
 
 # Generated files
 .docusaurus

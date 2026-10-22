@@ -108,6 +108,12 @@ const config: Config = {
       },
       items: [
         {
+          type: "docSidebar",
+          sidebarId: "typst",
+          label: "Cours Typst",
+          position: "left",
+        },
+        {
           href: "https://mpi-informatique.github.io/",
           label: "MPI",
           position: "right",

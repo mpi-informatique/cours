@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "generate:typst": "node scripts/typst-pages.mjs",
+    "prestart": "npm run generate:typst",
+    "prebuild": "npm run generate:typst",
     "docusaurus": "docusaurus",
     "start": "docusaurus start --host 0.0.0.0",
     "build": "docusaurus build",
