@@ -1,4 +1,25 @@
 - Langages
   - Langages réguliers
     - cours-langages-reguliers
+    - [Résumé de cours](doc:langages/reguliers/poly_reguliers)
+    - [QCM - Langages réguliers](doc:langages/reguliers/qcm_reguliers)
     - td-langage: cor
+  - Automates
+    - cours-automates
+    - td-automate: cor
+    - [Résumé de cours](doc:langages/automate/poly_automate)
+    - [QCM - Automates finis](doc:langages/automate/qcm_automate)
+  - Théorème de Kleene
+    - cours-kleene
+    - [QCM - Théorème de Kleene](doc:langages/kleene/qcm_kleene)
+    - td-kleene
+    - [Résumé de cours](doc:langages/kleene/poly_kleene)
+  - Grammaire
+    - [QCM - Grammaires non-contextuelles](doc:langages/grammaire/qcm_grammaire)
+    - [Grammaire](doc:langages/grammaire/grammaire)
+    - td-grammaire
+    - [Résumé de cours](doc:langages/grammaire/poly_grammaire)
+    - [Ambiguïté](doc:langages/grammaire/ambigue)
+  - Centrale 2022
+    - [Centrale 2022](doc:langages/centrale22/centrale22)
+  - [Exercices interactifs sur les automates](https://fortierq.github.io/automates)
