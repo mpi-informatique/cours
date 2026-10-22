@@ -1,4 +1,4 @@
-import { readFileSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { readFileSync, mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,7 +24,7 @@ export function parsePages(markdown) {
       const id = entry[2] || entry[3];
       if (identifiers.has(id)) throw new Error(`Ligne ${index + 1} : document dupliqué (${id}).`);
       identifiers.add(id);
-      category.pages.push({ id, title: entry[1] || id, correction: entry[4] === 'cor' });
+      category.pages.push({ id, title: entry[1], correction: entry[4] === 'cor' });
     } else {
       throw new Error(`Ligne ${index + 1} : utiliser « - Rubrique : » puis «   - identifiant » ou «   - identifiant: cor ».`);
     }
@@ -33,8 +33,40 @@ export function parsePages(markdown) {
   return categories;
 }
 
-export function generatePages(siteRoot = root) {
+export function validateCatalogue(catalogue) {
+  if (!Array.isArray(catalogue)) throw new Error('Catalogue Typst invalide.');
+  const identifiers = new Set();
+  for (const entry of catalogue) {
+    if (typeof entry.id !== 'string' || typeof entry.titre !== 'string' || !entry.titre.trim() || identifiers.has(entry.id)) throw new Error('Titre ou identifiant invalide dans le catalogue Typst.');
+    identifiers.add(entry.id);
+  }
+  return catalogue;
+}
+
+export async function loadCatalogue(siteRoot = root) {
+  const local = process.env.EXERCICES_CATALOGUE || resolve(siteRoot, '../exercices/web/public/banque/catalogue.json');
+  if (existsSync(local)) return validateCatalogue(JSON.parse(readFileSync(local, 'utf8')));
+  if (process.env.EXERCICES_CATALOGUE) throw new Error(`Catalogue absent : ${local}`);
+  const base = process.env.EXERCICES_WEB_URL || 'https://mpi-informatique.github.io/exercices';
+  let catalogue;
+  try {
+    const response = await fetch(`${base.replace(/\/$/, '')}/banque/catalogue.json`, { signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    catalogue = await response.json();
+  } catch (error) {
+    console.warn(`Catalogue distant indisponible (${error.message}), utilisation de la dernière copie des titres Typst.`);
+    catalogue = JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8'));
+  }
+  return validateCatalogue(catalogue);
+}
+
+export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8'))) {
   const categories = parsePages(readFileSync(join(siteRoot, 'pages-typst.md'), 'utf8'));
+  const titles = new Map(validateCatalogue(catalogue).map(entry => [entry.id, entry.titre]));
+  for (const category of categories) for (const page of category.pages) {
+    if (!titles.has(page.id)) throw new Error(`Document absent du catalogue Typst : ${page.id}`);
+    page.title ??= titles.get(page.id);
+  }
   const output = join(siteRoot, 'docs/typst');
   rmSync(output, { recursive: true, force: true });
   for (const [categoryIndex, category] of categories.entries()) {
@@ -56,6 +88,9 @@ export function generatePages(siteRoot = root) {
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const categories = generatePages();
+  const catalogue = await loadCatalogue();
+  const categories = generatePages(root, catalogue);
+  // Cette copie permet aussi de construire le site sans accès réseau.
+  writeFileSync(join(root, 'typst-catalogue.json'), JSON.stringify(catalogue.map(({ id, titre }) => ({ id, titre })), null, 2) + '\n');
   console.log(`Pages Typst : ${categories.reduce((count, category) => count + category.pages.length, 0)} documents.`);
 }

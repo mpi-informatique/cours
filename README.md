@@ -32,9 +32,13 @@ Modifier `pages-typst.md` pour définir les rubriques et l'ordre des documents d
   - td-langage: cor
 ```
 
-Les identifiants sont ceux de la banque d'exercices, sans extension `.typ`. `cor` ajoute le corrigé au lecteur et le bouton « corrigé » au menu, avec l'énoncé à l'ouverture d'un TD. Sans `cor`, le lecteur de la page ne propose pas la variante corrigée. Les ressources restent publiques dans la banque ; ce réglage définit l'interface, pas une restriction d'accès. Un cours proposant une présentation s'ouvre sur celle-ci ; les autres documents s'ouvrent sur leur énoncé.
+Les identifiants sont ceux de la banque d'exercices, sans extension `.typ`. Le libellé de la sidebar reprend automatiquement le titre déclaré dans le fichier Typst. `cor` ajoute le corrigé au lecteur et le bouton « corrigé » au menu, avec l'énoncé à l'ouverture d'un TD. Sans `cor`, le lecteur de la page ne propose pas la variante corrigée. Les ressources restent publiques dans la banque ; ce réglage définit l'interface, pas une restriction d'accès. Un cours proposant une présentation s'ouvre sur celle-ci ; les autres documents s'ouvrent sur leur énoncé.
 
 Pour choisir un libellé, utiliser un lien Markdown : `  - [Langages réguliers](cours-langages-reguliers)` ou `  - [TD de langages](td-langage): cor`.
+
+Les titres proviennent de `banque/catalogue.json`, exporté par la banque à partir des métadonnées Typst. Le générateur utilise d'abord l'export local du dépôt voisin, puis le catalogue du site publié. `EXERCICES_CATALOGUE` permet de fournir un autre fichier local. `typst-catalogue.json` conserve une copie des titres pour les constructions sans réseau ; une indisponibilité distante est signalée dans les logs. Après une modification des titres Typst, régénérer l'export de la banque puis reconstruire le site de cours.
+
+Le lecteur charge des PDF précompilés lors de la préparation de la banque. Il n'initialise pas le compilateur Typst dans le navigateur. La présentation est préchargée en arrière-plan pendant la lecture du cours écrit. En plein écran, seule la page PDF est visible ; Échap quitte la présentation et les flèches ou Espace changent de page.
 
 `npm run start` et `npm run build` génèrent les pages dans `docs/typst/`, ignoré par Git. Relancer le serveur après une modification du menu. Les pages sont accessibles sous `/cours/docs/typst/<rubrique>/<identifiant>`. Les anciens cours restent disponibles dans leurs rubriques.
 

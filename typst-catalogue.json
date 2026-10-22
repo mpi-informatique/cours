@@ -1,0 +1,294 @@
+[
+  {
+    "id": "mcnaughton-yamada",
+    "titre": "Algorithme de McNaughton-Yamada"
+  },
+  {
+    "id": "algorithmes-automates",
+    "titre": "Algorithmes sur les automates"
+  },
+  {
+    "id": "ambiguite-grammaire-reguliere",
+    "titre": "Ambiguïté et langages réguliers"
+  },
+  {
+    "id": "cours-automates",
+    "titre": "Automates"
+  },
+  {
+    "id": "ens-oral-mp-automates-monoides",
+    "titre": "Automates et monoïdes"
+  },
+  {
+    "id": "ens-oral-mp-automates-ordres-partiels",
+    "titre": "Automates et ordres partiels"
+  },
+  {
+    "id": "ens-oral-mp-automates-palindromes",
+    "titre": "Automates et palindromes"
+  },
+  {
+    "id": "ens-oral-mp-automates-pile-pompage",
+    "titre": "Automates à pile et lemme de pompage"
+  },
+  {
+    "id": "puissances-matrice-trois-diagonalisable",
+    "titre": "Calcul de puissances par diagonalisation"
+  },
+  {
+    "id": "determinant-fonction-affine",
+    "titre": "Calcul à l'aide d'une fonction affine"
+  },
+  {
+    "id": "centraliseur-langage",
+    "titre": "Centraliseur d'un langage"
+  },
+  {
+    "id": "ens-oral-mp-cloture-commutative-langage",
+    "titre": "Clôture commutative de langages réguliers"
+  },
+  {
+    "id": "cloture-miroir-prefixes-suffixes-facteurs",
+    "titre": "Clôture des langages reconnaissables"
+  },
+  {
+    "id": "ens-oral-mp-cloture-sur-mots",
+    "titre": "Clôture par sur-mot"
+  },
+  {
+    "id": "commutation-stabilite-sous-espaces-propres",
+    "titre": "Commutation et sous-espaces propres"
+  },
+  {
+    "id": "commutant-spectre-simple",
+    "titre": "Commuter avec un spectre simple"
+  },
+  {
+    "id": "diagonalisabilite-rang-un-trace",
+    "titre": "Diagonalisabilité en rang un"
+  },
+  {
+    "id": "diagonalisation-simultanee",
+    "titre": "Diagonalisation simultanée"
+  },
+  {
+    "id": "distance-de-hamming",
+    "titre": "Distance de Hamming"
+  },
+  {
+    "id": "dominance-diagonale",
+    "titre": "Dominance diagonale stricte"
+  },
+  {
+    "id": "antisymetrique",
+    "titre": "Déterminant antisymétrique à coefficients constants"
+  },
+  {
+    "id": "binomiaux",
+    "titre": "Déterminant de coefficients binomiaux"
+  },
+  {
+    "id": "derivee-exponentielle",
+    "titre": "Déterminant de la dérivation sur un espace de fonctions"
+  },
+  {
+    "id": "sommes-partielles",
+    "titre": "Déterminant des sommes partielles"
+  },
+  {
+    "id": "tridiagonal-ab",
+    "titre": "Déterminant tridiagonal à deux paramètres"
+  },
+  {
+    "id": "tridiagonal-a",
+    "titre": "Déterminant tridiagonal à diagonale double"
+  },
+  {
+    "id": "structure-complexe",
+    "titre": "Endomorphisme de carré moins l'identité"
+  },
+  {
+    "id": "ensembles-distinguants-automates",
+    "titre": "Ensemble distinguant"
+  },
+  {
+    "id": "ensembles-inevitables",
+    "titre": "Ensembles inévitables de mots"
+  },
+  {
+    "id": "exemples-langages-reguliers",
+    "titre": "Exemples de langages réguliers"
+  },
+  {
+    "id": "forme-normale-chomsky",
+    "titre": "Forme normale de Chomsky et reconnaissance"
+  },
+  {
+    "id": "grammaires-lineaires",
+    "titre": "Grammaires linéaires"
+  },
+  {
+    "id": "langages-locaux-glushkov",
+    "titre": "Langage local, linéaire et automate de Glushkov"
+  },
+  {
+    "id": "ens-oral-mp-langages-continuables-primitifs",
+    "titre": "Langages continuables et mots primitifs"
+  },
+  {
+    "id": "cours-langages-reguliers",
+    "titre": "Langages réguliers"
+  },
+  {
+    "id": "pompage-intersection-complementaire",
+    "titre": "Lemme d'Ogden"
+  },
+  {
+    "id": "miroir-langage-non-contextuel",
+    "titre": "Miroir d'un langage non-contextuel"
+  },
+  {
+    "id": "mines-ponts-2019-mp-informatique",
+    "titre": "Morphismes d'automates"
+  },
+  {
+    "id": "morphismes-automates",
+    "titre": "Morphismes d'automates et unicité de l'automate minimal"
+  },
+  {
+    "id": "mots-de-dyck",
+    "titre": "Mots de Dyck"
+  },
+  {
+    "id": "dyck-grammaires-denombrement",
+    "titre": "Mots de Dyck : grammaires et dénombrement"
+  },
+  {
+    "id": "mots-de-fibonacci",
+    "titre": "Mots de Fibonacci"
+  },
+  {
+    "id": "mots-qui-commutent",
+    "titre": "Mots qui commutent"
+  },
+  {
+    "id": "centrale-2017-mp-informatique",
+    "titre": "Mots synchronisants"
+  },
+  {
+    "id": "ajout-arcs-forte-connexite",
+    "titre": "Nombre minimal d'arcs à ajouter pour rendre un graphe fortement connexe"
+  },
+  {
+    "id": "centrale-2022-mp-informatique",
+    "titre": "Option informatique"
+  },
+  {
+    "id": "palindromes-et-rationalite",
+    "titre": "Palindromes et régularité"
+  },
+  {
+    "id": "racine-langage",
+    "titre": "Racine d'un langage"
+  },
+  {
+    "id": "reconnaissable-ou-non",
+    "titre": "Reconnaissable ou non ?"
+  },
+  {
+    "id": "td-reduction",
+    "titre": "Réduction"
+  },
+  {
+    "id": "reduction-endomorphisme-rang-un",
+    "titre": "Réduction en rang un"
+  },
+  {
+    "id": "ens-oral-mp-reparation-langage",
+    "titre": "Réparation de mots pour un langage régulier"
+  },
+  {
+    "id": "residuels-minimisation",
+    "titre": "Résiduels et minimisation d'automate"
+  },
+  {
+    "id": "monoides-libres-codes",
+    "titre": "Sous-monoïdes de mots et codes"
+  },
+  {
+    "id": "spectre-rotation-plan",
+    "titre": "Spectre d'une rotation"
+  },
+  {
+    "id": "stabilite-langages-reguliers",
+    "titre": "Stabilité des langages réguliers"
+  },
+  {
+    "id": "ccinp-oral-langages-automates",
+    "titre": "Sujet 0 CCINP"
+  },
+  {
+    "id": "longueur-discriminante-automates",
+    "titre": "Taille discriminante"
+  },
+  {
+    "id": "td-automate",
+    "titre": "TD : Automates"
+  },
+  {
+    "id": "td-grammaire",
+    "titre": "TD : Grammaires"
+  },
+  {
+    "id": "td-langage",
+    "titre": "TD : Langages réguliers"
+  },
+  {
+    "id": "td-kleene",
+    "titre": "TD : Théorème de Kleene"
+  },
+  {
+    "id": "cours-kleene",
+    "titre": "Théorème de Kleene"
+  },
+  {
+    "id": "langages-engendres-grammaires",
+    "titre": "Trouver le langage engendré"
+  },
+  {
+    "id": "construire-grammaires",
+    "titre": "Trouver une grammaire"
+  },
+  {
+    "id": "nilpotence-commutateur",
+    "titre": "Un commutateur impose la nilpotence"
+  },
+  {
+    "id": "reduction-derivation-polynomes-decalee",
+    "titre": "Un endomorphisme de polynômes"
+  },
+  {
+    "id": "spectre-endomorphisme-suites",
+    "titre": "Un endomorphisme de suites"
+  },
+  {
+    "id": "diagonalisation-matrice-deux",
+    "titre": "Une première diagonalisation"
+  },
+  {
+    "id": "diagonalisabilite-triangulaire-parametres",
+    "titre": "Une valeur propre double"
+  },
+  {
+    "id": "hors-diagonale-un",
+    "titre": "Zéros sur la diagonale, uns ailleurs"
+  },
+  {
+    "id": "centrale-2010-mp-informatique",
+    "titre": "Étoile d'un langage polynomial"
+  },
+  {
+    "id": "ens-oral-mp-evaluation-acceleree-automates",
+    "titre": "Évaluation accélérée d'automates"
+  }
+]

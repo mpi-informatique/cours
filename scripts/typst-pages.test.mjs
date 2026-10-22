@@ -5,11 +5,13 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { generatePages, parsePages } from './typst-pages.mjs';
 
+const catalogue = [{ id: 'cours-langages-reguliers', titre: 'Langages réguliers' }, { id: 'td-langage', titre: 'TD : Langages réguliers' }];
+
 test('Le menu respecte les rubriques, leur ordre et les corrigés explicitement demandés', () => {
   const categories = parsePages('# Mes cours\n\n- Langages :\n  - cours-langages-reguliers\n  - [TD langages](td-langage): cor\n- Graphes :\n  - parcours\n');
   assert.deepEqual(categories, [
-    { id: 'langages', title: 'Langages', pages: [{ id: 'cours-langages-reguliers', title: 'cours-langages-reguliers', correction: false }, { id: 'td-langage', title: 'TD langages', correction: true }] },
-    { id: 'graphes', title: 'Graphes', pages: [{ id: 'parcours', title: 'parcours', correction: false }] },
+    { id: 'langages', title: 'Langages', pages: [{ id: 'cours-langages-reguliers', title: undefined, correction: false }, { id: 'td-langage', title: 'TD langages', correction: true }] },
+    { id: 'graphes', title: 'Graphes', pages: [{ id: 'parcours', title: undefined, correction: false }] },
   ]);
 });
 
@@ -28,17 +30,29 @@ test('La génération produit des pages sans titre visible et retire les documen
   const root = mkdtempSync(join(tmpdir(), 'mpi-typst-pages-'));
   try {
     writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - cours-langages-reguliers\n  - td-langage: cor\n');
-    generatePages(root);
+    generatePages(root, catalogue);
     const course = readFileSync(join(root, 'docs/typst/langages/cours-langages-reguliers.mdx'), 'utf8');
     const td = readFileSync(join(root, 'docs/typst/langages/td-langage.mdx'), 'utf8');
     assert.match(course, /hide_title: true/);
     assert.match(course, /typst: true/);
     assert.match(course, /correction=\{false\}/);
+    assert.match(course, /title: "Langages réguliers"/);
+    assert.match(td, /title: "TD : Langages réguliers"/);
     assert.match(td, /sidebar_custom_props: \{cor: true\}/);
     assert.match(td, /correction=\{true\}/);
     writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - td-langage: cor\n');
-    generatePages(root);
+    generatePages(root, catalogue);
     assert.equal(existsSync(join(root, 'docs/typst/langages/cours-langages-reguliers.mdx')), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Un identifiant inconnu ne remplace pas silencieusement le titre Typst', () => {
+  const root = mkdtempSync(join(tmpdir(), 'mpi-typst-pages-'));
+  try {
+    writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - inconnu\n');
+    assert.throws(() => generatePages(root, catalogue), /absent du catalogue/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
