@@ -252,6 +252,10 @@
     "titre": "Théorème de Kleene"
   },
   {
+    "id": "tp-automates",
+    "titre": "TP : Automates"
+  },
+  {
     "id": "langages-engendres-grammaires",
     "titre": "Trouver le langage engendré"
   },
@@ -282,10 +286,6 @@
   {
     "id": "hors-diagonale-un",
     "titre": "Zéros sur la diagonale, uns ailleurs"
-  },
-  {
-    "id": "centrale-2010-mp-informatique",
-    "titre": "Étoile d'un langage polynomial"
   },
   {
     "id": "ens-oral-mp-evaluation-acceleree-automates",

@@ -22,3 +22,5 @@
   - Centrale 2022
     - [Centrale 2022](doc:langages/centrale22/centrale22)
   - [Exercices interactifs sur les automates](https://fortierq.github.io/automates)
+- TP
+  - tp-automates: cor

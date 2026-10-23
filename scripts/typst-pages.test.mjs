@@ -122,13 +122,13 @@ test('Le menu mélange les PDF Typst, les pages existantes et les liens externes
   }
 });
 
-test('Langages conserve les 18 documents et le lien interactif de l’ancien menu', () => {
+test('Langages conserve les documents publiés et le lien interactif', () => {
   const [menu] = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8'));
   assert.equal(menu.title, 'Langages');
   assert.deepEqual(menu.children.filter(item => item.children).map(item => item.title), ['Langages réguliers', 'Automates', 'Théorème de Kleene', 'Grammaire', 'Centrale 2022']);
   const entries = menu.children.flatMap(item => item.children || [item]);
   assert.deepEqual(entries.map(item => item.id), [
-    'cours-langages-reguliers', 'langages/reguliers/poly_reguliers', 'langages/reguliers/qcm_reguliers', 'td-langage',
+    'cours-langages-reguliers', 'langages/reguliers/qcm_reguliers', 'td-langage',
     'cours-automates', 'td-automate', 'langages/automate/poly_automate', 'langages/automate/qcm_automate',
     'cours-kleene', 'langages/kleene/qcm_kleene', 'td-kleene', 'langages/kleene/poly_kleene',
     'langages/grammaire/qcm_grammaire', 'langages/grammaire/grammaire', 'td-grammaire', 'langages/grammaire/poly_grammaire', 'langages/grammaire/ambigue',
@@ -137,4 +137,10 @@ test('Langages conserve les 18 documents et le lien interactif de l’ancien men
   assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate']);
   assert.equal(entries.find(item => item.id === 'td-kleene').correction, false);
   assert.equal(entries.find(item => item.id === 'td-grammaire').correction, false);
+});
+
+
+test('La rubrique TP publie les automates avec leur corrigé', () => {
+  const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
+  assert.deepEqual(menu.children, [{ id: 'tp-automates', title: undefined, correction: true }]);
 });
