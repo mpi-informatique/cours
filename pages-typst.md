@@ -1,6 +1,6 @@
 - Langages
   - Langages réguliers
-    - cours-langages-reguliers
+    - cours-langages
     - [QCM - Langages réguliers](doc:langages/reguliers/qcm_reguliers)
     - td-langage: cor
   - Automates

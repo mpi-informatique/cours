@@ -5,12 +5,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { generatePages, parsePages } from './typst-pages.mjs';
 
-const catalogue = [{ id: 'cours-langages-reguliers', titre: 'Langages réguliers' }, { id: 'td-langage', titre: 'TD : Langages réguliers' }];
+const catalogue = [{ id: 'cours-langages', titre: 'Langages réguliers' }, { id: 'td-langage', titre: 'TD : Langages réguliers' }];
 
 test('Le menu respecte les rubriques, leur ordre et les corrigés explicitement demandés', () => {
-  const categories = parsePages('# Mes cours\n\n- Langages :\n  - cours-langages-reguliers\n  - [TD langages](td-langage): cor\n- Graphes :\n  - parcours\n');
+  const categories = parsePages('# Mes cours\n\n- Langages :\n  - cours-langages\n  - [TD langages](td-langage): cor\n- Graphes :\n  - parcours\n');
   assert.deepEqual(categories, [
-    { id: 'langages', title: 'Langages', children: [{ id: 'cours-langages-reguliers', title: undefined, correction: false }, { id: 'td-langage', title: 'TD langages', correction: true }] },
+    { id: 'langages', title: 'Langages', children: [{ id: 'cours-langages', title: undefined, correction: false }, { id: 'td-langage', title: 'TD langages', correction: true }] },
     { id: 'graphes', title: 'Graphes', children: [{ id: 'parcours', title: undefined, correction: false }] },
   ]);
 });
@@ -18,7 +18,7 @@ test('Le menu respecte les rubriques, leur ordre et les corrigés explicitement 
 test('Un menu incorrect est refusé au lieu de produire des routes ambiguës', () => {
   for (const input of [
     '- Langages :\n',
-    '  - cours-langages-reguliers\n',
+    '  - cours-langages\n',
     '- Langages :\n  - td-langage: correction\n',
     '- Langages :\n  - ../secret\n',
     '- Langages :\n  - td-langage\n  - td-langage: cor\n',
@@ -29,9 +29,9 @@ test('Un menu incorrect est refusé au lieu de produire des routes ambiguës', (
 test('La génération produit des pages sans titre visible et retire les documents supprimés du menu', () => {
   const root = mkdtempSync(join(tmpdir(), 'mpi-typst-pages-'));
   try {
-    writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - cours-langages-reguliers\n  - td-langage: cor\n');
+    writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - cours-langages\n  - td-langage: cor\n');
     generatePages(root, catalogue);
-    const course = readFileSync(join(root, 'docs/typst/langages/cours-langages-reguliers.mdx'), 'utf8');
+    const course = readFileSync(join(root, 'docs/typst/langages/cours-langages.mdx'), 'utf8');
     const td = readFileSync(join(root, 'docs/typst/langages/td-langage.mdx'), 'utf8');
     assert.match(course, /hide_title: true/);
     assert.match(course, /typst: true/);
@@ -42,7 +42,7 @@ test('La génération produit des pages sans titre visible et retire les documen
     assert.match(td, /correction=\{true\}/);
     writeFileSync(join(root, 'pages-typst.md'), '- Langages :\n  - td-langage: cor\n');
     generatePages(root, catalogue);
-    assert.equal(existsSync(join(root, 'docs/typst/langages/cours-langages-reguliers.mdx')), false);
+    assert.equal(existsSync(join(root, 'docs/typst/langages/cours-langages.mdx')), false);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -61,13 +61,13 @@ test('Un identifiant inconnu ne remplace pas silencieusement le titre Typst', ()
 test('Les menus de navigation et les catégories imbriquées suivent le Markdown', () => {
   const root = mkdtempSync(join(tmpdir(), 'mpi-typst-navigation-'));
   try {
-    writeFileSync(join(root, 'pages-typst.md'), '- Langages\n  - Langages réguliers\n    - cours-langages-reguliers\n    - Exercices\n      - td-langage: cor\n- Graphes\n  - parcours\n');
+    writeFileSync(join(root, 'pages-typst.md'), '- Langages\n  - Langages réguliers\n    - cours-langages\n    - Exercices\n      - td-langage: cor\n- Graphes\n  - parcours\n');
     generatePages(root, [...catalogue, { id: 'parcours', titre: 'Parcours de graphes' }]);
     const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
     assert.deepEqual(navigation, {
       sidebars: {
         langages: [{ type: 'category', label: 'Langages réguliers', collapsed: true, items: [
-          { type: 'doc', id: 'typst/langages/langages-reguliers/cours-langages-reguliers' },
+          { type: 'doc', id: 'typst/langages/langages-reguliers/cours-langages' },
           { type: 'category', label: 'Exercices', collapsed: true, items: [{ type: 'doc', id: 'typst/langages/langages-reguliers/exercices/td-langage' }] },
         ] }],
         graphes: [{ type: 'doc', id: 'typst/graphes/parcours' }],
@@ -81,7 +81,7 @@ test('Les menus de navigation et les catégories imbriquées suivent le Markdown
     assert.equal(category.label, 'Langages réguliers');
     assert.equal(category.position, 1);
     assert.equal(category.collapsed, true);
-    const course = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/cours-langages-reguliers.mdx'), 'utf8');
+    const course = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/cours-langages.mdx'), 'utf8');
     assert.match(course, /title: "Langages réguliers"/);
     assert.match(course, /sidebar_position: 1/);
     const td = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/exercices/td-langage.mdx'), 'utf8');
@@ -96,23 +96,23 @@ test('Les sauts de niveau et les collisions entre catégories et documents sont 
   for (const input of [
     '- Langages\n    - td-langage\n',
     '- Langages\n   - td-langage\n',
-    '- Langages\n  - Cours\n    - td-langage\n  - Cours\n    - cours-langages-reguliers\n',
-    '- Langages\n  - td-langage\n    - cours-langages-reguliers\n  - td-langage: cor\n',
+    '- Langages\n  - Cours\n    - td-langage\n  - Cours\n    - cours-langages\n',
+    '- Langages\n  - td-langage\n    - cours-langages\n  - td-langage: cor\n',
   ]) assert.throws(() => parsePages(input));
 });
 
 test('Le menu mélange les PDF Typst, les pages existantes et les liens externes', () => {
   const root = mkdtempSync(join(tmpdir(), 'mpi-typst-mixed-'));
   try {
-    writeFileSync(join(root, 'pages-typst.md'), '- Langages\n  - cours-langages-reguliers\n  - [Résumé de cours](doc:langages/reguliers/poly_reguliers)\n  - [Exercices interactifs](https://fortierq.github.io/automates)\n');
+    writeFileSync(join(root, 'pages-typst.md'), '- Langages\n  - cours-langages\n  - [Résumé de cours](doc:langages/reguliers/poly_reguliers)\n  - [Exercices interactifs](https://fortierq.github.io/automates)\n');
     generatePages(root, catalogue);
     const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
     assert.deepEqual(navigation.sidebars.langages, [
-      { type: 'doc', id: 'typst/langages/cours-langages-reguliers' },
+      { type: 'doc', id: 'typst/langages/cours-langages' },
       { type: 'doc', label: 'Résumé de cours', id: 'langages/reguliers/poly_reguliers' },
       { type: 'link', label: 'Exercices interactifs', href: 'https://fortierq.github.io/automates' },
     ]);
-    assert.equal(existsSync(join(root, 'docs/typst/langages/cours-langages-reguliers.mdx')), true);
+    assert.equal(existsSync(join(root, 'docs/typst/langages/cours-langages.mdx')), true);
     assert.equal(existsSync(join(root, 'docs/typst/langages/langages')), false);
     for (const target of ['doc:../secret', 'javascript:alert', 'doc:/absolu']) {
       assert.throws(() => parsePages(`- Langages\n  - [Invalide](${target})\n`));
@@ -128,7 +128,7 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
   assert.deepEqual(menu.children.filter(item => item.children).map(item => item.title), ['Langages réguliers', 'Automates', 'Théorème de Kleene', 'Grammaire', 'Centrale 2022']);
   const entries = menu.children.flatMap(item => item.children || [item]);
   assert.deepEqual(entries.map(item => item.id), [
-    'cours-langages-reguliers', 'langages/reguliers/qcm_reguliers', 'td-langage',
+    'cours-langages', 'langages/reguliers/qcm_reguliers', 'td-langage',
     'cours-automates', 'td-automate', 'langages/automate/poly_automate', 'langages/automate/qcm_automate',
     'cours-kleene', 'langages/kleene/qcm_kleene', 'td-kleene', 'langages/kleene/poly_kleene',
     'langages/grammaire/qcm_grammaire', 'langages/grammaire/grammaire', 'td-grammaire', 'langages/grammaire/poly_grammaire', 'langages/grammaire/ambigue',

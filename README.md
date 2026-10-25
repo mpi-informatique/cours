@@ -12,7 +12,7 @@ npm run start
 
 ## Lecteur Typst
 
-Le menu **Langages**, défini dans `pages-typst.md`, intègre le lecteur PDF de la banque d'exercices pour `cours-langages-reguliers.typ`. La présentation s'ouvre par défaut. Le lecteur occupe tout l'espace disponible sous la navigation, suit le thème du site sans recompiler et propose un bouton de présentation en plein écran.
+Le menu **Langages**, défini dans `pages-typst.md`, intègre le lecteur PDF de la banque d'exercices pour `cours-langages.typ`. La présentation s'ouvre par défaut. Le lecteur occupe tout l'espace disponible sous la navigation, suit le thème du site sans recompiler et propose un bouton de présentation en plein écran.
 
 Pour essayer avec les deux sites locaux, démarrer `just web` depuis le dépôt voisin `exercices`, puis lancer ici :
 
@@ -20,7 +20,7 @@ Pour essayer avec les deux sites locaux, démarrer `just web` depuis le dépôt 
 EXERCICES_WEB_URL=http://127.0.0.1:4321 nix develop -c npm run start
 ```
 
-Ouvrir <http://127.0.0.1:3000/cours/docs/typst/langages/langages-reguliers/cours-langages-reguliers>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
+Ouvrir <http://127.0.0.1:3000/cours/docs/typst/langages/langages-reguliers/cours-langages>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
 
 ## Définir les pages en Markdown
 
@@ -29,7 +29,7 @@ Modifier `pages-typst.md` pour définir les menus de navigation, les rubriques d
 ```markdown
 - Langages
   - Langages réguliers
-    - cours-langages-reguliers
+    - cours-langages
     - td-langage: cor
 ```
 
@@ -37,7 +37,7 @@ Le premier niveau crée les menus de la barre de navigation. Les niveaux interm�
 
 Les identifiants sont ceux de la banque d'exercices, sans extension `.typ`. Le libellé de la sidebar reprend automatiquement le titre déclaré dans le fichier Typst. `cor` ajoute le corrigé au lecteur et le bouton « corrigé » au menu, avec l'énoncé à l'ouverture d'un TD. Sans `cor`, le lecteur de la page ne propose pas la variante corrigée. Les ressources restent publiques dans la banque ; ce réglage définit l'interface, pas une restriction d'accès. Un cours proposant une présentation s'ouvre sur celle-ci ; les autres documents s'ouvrent sur leur énoncé.
 
-Pour choisir un libellé, utiliser un lien Markdown : `  - [Langages réguliers](cours-langages-reguliers)` ou `  - [TD de langages](td-langage): cor`.
+Pour choisir un libellé, utiliser un lien Markdown : `  - [Langages réguliers](cours-langages)` ou `  - [TD de langages](td-langage): cor`.
 
 Pour conserver une page MDX existante, utiliser son identifiant Docusaurus : `- [Résumé de cours](doc:langages/reguliers/poly_reguliers)`. Un lien HTTP(S) crée une entrée externe : `- [Exercices interactifs sur les automates](https://fortierq.github.io/automates)`. Ces entrées rejoignent la même sidebar que les PDF Typst. Les réglages de correction des pages existantes restent définis dans leur en-tête MDX.
 
