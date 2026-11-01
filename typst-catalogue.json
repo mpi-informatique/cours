@@ -144,6 +144,10 @@
     "titre": "Lemme d'Ogden"
   },
   {
+    "id": "cours-logique-propositionnelle",
+    "titre": "Logique propositionnelle (MP2I)"
+  },
+  {
     "id": "miroir-langage-non-contextuel",
     "titre": "Miroir d'un langage non-contextuel"
   },
