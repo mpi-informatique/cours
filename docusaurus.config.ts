@@ -180,11 +180,11 @@ const config: Config = {
           label: "Classe",
           position: "right",
         },
-        {
-          href: "https://informatique-cpge.github.io",
-          label: "Ressources",
-          position: "right",
-        },
+        // {
+        //   href: "https://informatique-cpge.github.io",
+        //   label: "Ressources",
+        //   position: "right",
+        // },
         {
           href: "https://github.com/mpi-informatique/cours",
           "aria-label": "GitHub repository",
