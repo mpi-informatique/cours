@@ -3,9 +3,36 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { generatePages, parsePages } from './typst-pages.mjs';
+import { generatePages, loadCatalogue, parsePages } from './typst-pages.mjs';
 
 const catalogue = [{ id: 'cours-langages', titre: 'Langages réguliers' }, { id: 'td-langage', titre: 'TD : Langages réguliers' }];
+
+test('Un catalogue distant en retard conserve les nouvelles pages versionnées et actualise les titres connus', async t => {
+  const root = mkdtempSync(join(tmpdir(), 'mpi-typst-catalogue-'));
+  try {
+    writeFileSync(join(root, 'typst-catalogue.json'), JSON.stringify([
+      { id: 'tp-automates', titre: 'Ancien titre' },
+      { id: 'tp-cyk', titre: 'TP CYK' },
+    ]));
+    writeFileSync(join(root, 'pages-typst.md'), '- TP\n  - tp-automates: cor\n  - tp-cyk\n');
+    t.mock.method(globalThis, 'fetch', async () => ({ ok: true, json: async () => [
+      { id: 'tp-automates', titre: 'TP Automates' },
+      { id: 'autre-tp', titre: 'Autre TP' },
+    ] }));
+    const loaded = await loadCatalogue(root);
+    assert.deepEqual(loaded, [
+      { id: 'tp-automates', titre: 'TP Automates' },
+      { id: 'tp-cyk', titre: 'TP CYK' },
+      { id: 'autre-tp', titre: 'Autre TP' },
+    ]);
+    generatePages(root, loaded);
+    const cyk = readFileSync(join(root, 'docs/typst/tp/tp-cyk.mdx'), 'utf8');
+    assert.match(cyk, /title: "TP CYK"/);
+    assert.match(cyk, /correction=\{false\}/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
 
 test('Le menu respecte les rubriques, leur ordre et les corrigés explicitement demandés', () => {
   const categories = parsePages('# Mes cours\n\n- Langages :\n  - cours-langages\n  - [TD langages](td-langage): cor\n- Graphes :\n  - parcours\n');
@@ -140,7 +167,10 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
 });
 
 
-test('La rubrique TP publie les automates avec leur corrigé', () => {
+test('La rubrique TP publie les automates avec leur corrigé et CYK sans corrigé', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
-  assert.deepEqual(menu.children, [{ id: 'tp-automates', title: undefined, correction: true }]);
+  assert.deepEqual(menu.children, [
+    { id: 'tp-automates', title: undefined, correction: true },
+    { id: 'tp-cyk', title: undefined, correction: false },
+  ]);
 });

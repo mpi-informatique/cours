@@ -68,6 +68,7 @@ export async function loadCatalogue(siteRoot = root) {
   const local = process.env.EXERCICES_CATALOGUE || resolve(siteRoot, '../exercices/web/public/banque/catalogue.json');
   if (existsSync(local)) return validateCatalogue(JSON.parse(readFileSync(local, 'utf8')));
   if (process.env.EXERCICES_CATALOGUE) throw new Error(`Catalogue absent : ${local}`);
+  const saved = validateCatalogue(JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8')));
   const base = process.env.EXERCICES_WEB_URL || 'https://mpi-informatique.github.io/exercices';
   let catalogue;
   try {
@@ -76,9 +77,11 @@ export async function loadCatalogue(siteRoot = root) {
     catalogue = await response.json();
   } catch (error) {
     console.warn(`Catalogue distant indisponible (${error.message}), utilisation de la dernière copie des titres Typst.`);
-    catalogue = JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8'));
+    return saved;
   }
-  return validateCatalogue(catalogue);
+  // Le site des exercices peut être publié après celui du cours.
+  // Garder les entrées versionnées absentes du catalogue distant, et ses titres à jour.
+  return [...new Map([...saved, ...validateCatalogue(catalogue)].map(entry => [entry.id, entry])).values()];
 }
 
 export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSync(join(siteRoot, 'typst-catalogue.json'), 'utf8'))) {
