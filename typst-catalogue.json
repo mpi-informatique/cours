@@ -108,8 +108,8 @@
     "titre": "Endomorphisme de carré moins l'identité"
   },
   {
-    "id": "residuels-minimisation",
-    "titre": "Ensembles distinguants, résiduels et minimisation"
+    "id": "ensembles-distinguants-automates",
+    "titre": "Ensemble distinguant"
   },
   {
     "id": "ensembles-inevitables",
@@ -200,10 +200,6 @@
     "titre": "Reconnaissable ou non ?"
   },
   {
-    "id": "reciproque-lemme-etoile",
-    "titre": "Réciproque du lemme de l'étoile"
-  },
-  {
     "id": "td-reduction",
     "titre": "Réduction"
   },
@@ -214,6 +210,10 @@
   {
     "id": "ens-oral-mp-reparation-langage",
     "titre": "Réparation de mots pour un langage régulier"
+  },
+  {
+    "id": "residuels-minimisation",
+    "titre": "Résiduels et minimisation d'automate"
   },
   {
     "id": "monoides-libres-codes",
