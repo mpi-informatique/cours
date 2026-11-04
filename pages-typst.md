@@ -26,3 +26,4 @@
   - cours-logique-propositionnelle
 - TP
   - tp-automates: cor
+  - tp-cyk
