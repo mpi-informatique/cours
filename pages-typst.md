@@ -1,3 +1,6 @@
+- TP
+  - tp-automates: cor
+  - tp-cyk
 - Langages
   - Langages réguliers
     - cours-langages
@@ -24,6 +27,3 @@
   - [Exercices interactifs sur les automates](https://fortierq.github.io/automates)
 - Logique
   - cours-logique-propositionnelle
-- TP
-  - tp-automates: cor
-  - tp-cyk
