@@ -127,12 +127,6 @@ const config: Config = {
           position: "left",
           label: "DS",
         },
-        {
-          type: "doc",
-          docId: "tp/tp1/tp1",
-          position: "left",
-          label: "TP",
-        },
         // {
         //   type: "doc",
         //   docId: "programmation/rappels_programmation",
