@@ -121,12 +121,6 @@ const config: Config = {
           position: "left",
           label: "Concours",
         },
-        {
-          type: "doc",
-          docId: "ds/ds1",
-          position: "left",
-          label: "DS",
-        },
         // {
         //   type: "doc",
         //   docId: "programmation/rappels_programmation",
