@@ -23,7 +23,7 @@ export default function DocSidebarItemLink({
   level,
   ...props
 }) {
-  const { href, label, className, autoAddBaseUrl } = item;
+  const { href, label, className, autoAddBaseUrl, customProps } = item;
   const isActive = isActiveSidebarItem(item, activePath);
   const isInternalLink = isInternalUrl(href);
   return (
@@ -60,6 +60,11 @@ export default function DocSidebarItemLink({
           <LinkLabel label={label} />
           {!isInternalLink && <IconExternalLink />}
         </Link>
+        {customProps?.cor === true && (
+          <span className={styles.correctionLabel} title="Corrigé disponible">
+            cor
+          </span>
+        )}
       </div>
     </li>
   );
