@@ -17,7 +17,7 @@
   - Théorème de Kleene
     - cours-kleene
     - [QCM - Théorème de Kleene](doc:langages/kleene/qcm_kleene)
-    - td-kleene
+    - td-kleene: cor
     - [Résumé de cours](doc:langages/kleene/poly_kleene)
   - Grammaire
     - [QCM - Grammaires non-contextuelles](doc:langages/grammaire/qcm_grammaire)
