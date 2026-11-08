@@ -114,12 +114,6 @@ test('Les menus de navigation et les catégories imbriquées suivent le Markdown
     assert.match(course, /sidebar_position: 1/);
     const td = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/exercices/td-langage.mdx'), 'utf8');
     assert.match(td, /^slug: \/td-langage$/m);
-    const redirects = JSON.parse(readFileSync(join(root, 'docs/typst/redirects.json'), 'utf8'));
-    assert.deepEqual(redirects, [
-      { from: '/docs/typst/langages/langages-reguliers/cours-langages', to: '/docs/cours-langages' },
-      { from: '/docs/typst/langages/langages-reguliers/exercices/td-langage', to: '/docs/td-langage' },
-      { from: '/docs/typst/graphes/parcours', to: '/docs/parcours' },
-    ]);
     assert.match(td, /correction=\{true\}/);
     assert.equal(existsSync(join(root, 'docs/typst/graphes/parcours.mdx')), true);
   } finally {

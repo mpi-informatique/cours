@@ -121,13 +121,11 @@ export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSy
     }
   }
   writeItems(categories, output);
-  const redirects = [];
   function sidebarItems(items, parentPath) {
     return items.map(item => {
       if (item.children) return { type: 'category', label: item.title, collapsed: true, items: sidebarItems(item.children, `${parentPath}/${item.id}`) };
       if (item.href) return { type: 'link', label: item.title, href: item.href };
       if (item.docId) return { type: 'doc', label: item.title, id: item.docId };
-      redirects.push({ from: `/docs/${parentPath}/${item.id}`, to: `/docs/${item.id}` });
       return { type: 'doc', id: `${parentPath}/${item.id}` };
     });
   }
@@ -136,7 +134,6 @@ export function generatePages(siteRoot = root, catalogue = JSON.parse(readFileSy
     navbar: categories.map(category => ({ type: 'docSidebar', sidebarId: category.id, label: category.title, position: 'left' })),
   };
   writeFileSync(join(output, 'navigation.json'), JSON.stringify(navigation, null, 2) + '\n');
-  writeFileSync(join(output, 'redirects.json'), JSON.stringify(redirects, null, 2) + '\n');
   return categories;
 }
 
