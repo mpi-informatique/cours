@@ -20,7 +20,7 @@ Pour essayer avec les deux sites locaux, démarrer `just web` depuis le dépôt 
 EXERCICES_WEB_URL=http://127.0.0.1:4321 nix develop -c npm run start
 ```
 
-Ouvrir <http://127.0.0.1:3000/cours/docs/typst/langages/langages-reguliers/cours-langages>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
+Ouvrir <http://127.0.0.1:3000/cours/docs/cours-langages>. Employer le même nom d'hôte pour les deux sites locaux (`127.0.0.1` ici) afin de permettre le chargement de l'iframe. La variable `EXERCICES_WEB_URL` désigne la racine du site d'exercices ; sans cette variable, le composant utilise sa version GitHub Pages. Elle est prise en compte au démarrage ou à la construction du site.
 
 ## Définir les pages en Markdown
 
@@ -45,7 +45,7 @@ Les titres proviennent de `banque/catalogue.json`, exporté par la banque à par
 
 Le lecteur charge des PDF précompilés lors de la préparation de la banque. Il n'initialise pas le compilateur Typst dans le navigateur. La présentation est préchargée en arrière-plan pendant la lecture du cours écrit. En plein écran, seule la page PDF est visible ; Échap quitte la présentation et les flèches ou Espace changent de page.
 
-`npm run start` et `npm run build` génèrent les pages dans `docs/typst/`, ignoré par Git. Relancer le serveur après une modification du menu. Les pages sont accessibles sous `/cours/docs/typst/<menu>/<rubriques>/<identifiant>`. Les pages existantes référencées dans le menu conservent leurs adresses et affichent la même sidebar que les documents Typst.
+`npm run start` et `npm run build` génèrent les pages dans `docs/typst/`, ignoré par Git. Relancer le serveur après une modification du menu. Les pages sont accessibles sous `/cours/docs/<identifiant>`, indépendamment de leur rubrique. Les anciennes adresses sous `/cours/docs/typst/<menu>/<rubriques>/<identifiant>` redirigent vers ces adresses courtes dans le site construit. Les pages existantes référencées dans le menu conservent leurs adresses et affichent la même sidebar que les documents Typst.
 
 Pour intégrer manuellement un document dans une page MDX, importer `@site/src/components/TypstPdf` et utiliser `<TypstPdf id="cours-kleene" title="Théorème de Kleene" />`, avec `hide_title: true`, `hide_table_of_contents: true` et `typst: true` dans l'en-tête. La propriété facultative `variant` accepte `enonce`, `corrige` ou `presentation` ; `correction={true}` propose aussi le corrigé.
 

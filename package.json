@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
+    "@docusaurus/plugin-client-redirects": "3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",

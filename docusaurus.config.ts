@@ -1,4 +1,5 @@
 import typstNavigation from "./docs/typst/navigation.json";
+import typstRedirects from "./docs/typst/redirects.json";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
@@ -28,6 +29,8 @@ const config: Config = {
   projectName: "cours", // Usually your repo name.
 
   onBrokenLinks: "throw",
+  onDuplicateRoutes: "throw",
+  plugins: [["@docusaurus/plugin-client-redirects", { redirects: typstRedirects }]],
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: "warn",

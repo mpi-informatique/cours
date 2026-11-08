@@ -62,6 +62,7 @@ test('La génération produit des pages sans titre visible et retire les documen
     const td = readFileSync(join(root, 'docs/typst/langages/td-langage.mdx'), 'utf8');
     assert.match(course, /hide_title: true/);
     assert.match(course, /typst: true/);
+    assert.match(course, /^slug: \/cours-langages$/m);
     assert.match(course, /correction=\{false\}/);
     assert.match(course, /title: "Langages réguliers"/);
     assert.match(td, /title: "TD : Langages réguliers"/);
@@ -112,6 +113,13 @@ test('Les menus de navigation et les catégories imbriquées suivent le Markdown
     assert.match(course, /title: "Langages réguliers"/);
     assert.match(course, /sidebar_position: 1/);
     const td = readFileSync(join(root, 'docs/typst/langages/langages-reguliers/exercices/td-langage.mdx'), 'utf8');
+    assert.match(td, /^slug: \/td-langage$/m);
+    const redirects = JSON.parse(readFileSync(join(root, 'docs/typst/redirects.json'), 'utf8'));
+    assert.deepEqual(redirects, [
+      { from: '/docs/typst/langages/langages-reguliers/cours-langages', to: '/docs/cours-langages' },
+      { from: '/docs/typst/langages/langages-reguliers/exercices/td-langage', to: '/docs/td-langage' },
+      { from: '/docs/typst/graphes/parcours', to: '/docs/parcours' },
+    ]);
     assert.match(td, /correction=\{true\}/);
     assert.equal(existsSync(join(root, 'docs/typst/graphes/parcours.mdx')), true);
   } finally {
