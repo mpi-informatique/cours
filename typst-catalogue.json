@@ -80,6 +80,10 @@
     "titre": "Dominance diagonale stricte"
   },
   {
+    "id": "cours-deduction-naturelle",
+    "titre": "Déduction naturelle"
+  },
+  {
     "id": "antisymetrique",
     "titre": "Déterminant antisymétrique à coefficients constants"
   },
@@ -230,6 +234,10 @@
   {
     "id": "ccinp-oral-langages-automates",
     "titre": "Sujet 0 CCINP"
+  },
+  {
+    "id": "semantique-ouverts",
+    "titre": "Sémantique des ouverts et incomplétude de la logique intuitionniste"
   },
   {
     "id": "longueur-discriminante-automates",

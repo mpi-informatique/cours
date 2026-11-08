@@ -30,3 +30,4 @@
   - [Exercices interactifs sur les automates](https://fortierq.github.io/automates)
 - Logique
   - cours-logique-propositionnelle
+  - cours-deduction-naturelle
