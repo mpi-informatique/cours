@@ -150,7 +150,7 @@ test('Le menu mélange les PDF Typst, les pages existantes et les liens externes
 });
 
 test('Langages conserve les documents publiés et le lien interactif', () => {
-  const [menu] = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8'));
+  const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'Langages');
   assert.equal(menu.title, 'Langages');
   assert.deepEqual(menu.children.filter(item => item.children).map(item => item.title), ['Langages réguliers', 'Automates', 'Théorème de Kleene', 'Grammaire', 'Centrale 2022']);
   const entries = menu.children.flatMap(item => item.children || [item]);
@@ -161,16 +161,16 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
     'langages/grammaire/qcm_grammaire', 'langages/grammaire/grammaire', 'td-grammaire', 'langages/grammaire/poly_grammaire', 'langages/grammaire/ambigue',
     'langages/centrale22/centrale22', 'https://fortierq.github.io/automates',
   ]);
-  assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate']);
-  assert.equal(entries.find(item => item.id === 'td-kleene').correction, false);
+  assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate', 'td-kleene']);
+  assert.equal(entries.find(item => item.id === 'td-kleene').correction, true);
   assert.equal(entries.find(item => item.id === 'td-grammaire').correction, false);
 });
 
 
-test('La rubrique TP publie les automates avec leur corrigé et CYK sans corrigé', () => {
+test('La rubrique TP publie les automates et CYK avec leur corrigé', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
   assert.deepEqual(menu.children, [
     { id: 'tp-automates', title: undefined, correction: true },
-    { id: 'tp-cyk', title: undefined, correction: false },
+    { id: 'tp-cyk', title: undefined, correction: true },
   ]);
 });
