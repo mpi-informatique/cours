@@ -1,6 +1,7 @@
 - DS
   - [DS 1 : Mines-Ponts 2019](doc:ds/ds1)
   - [DM 1 : Centrale 2017 — Mots synchronisants](centrale-2017-mp-informatique): cor
+  - langages-unaires: cor
 - TP
   - tp-automates: cor
   - tp-cyk: cor

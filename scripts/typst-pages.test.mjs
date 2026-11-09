@@ -169,6 +169,15 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
 });
 
 
+test('La rubrique DS publie les langages unaires avec leur corrigé', () => {
+  const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'DS');
+  assert.deepEqual(menu.children.find(item => item.id === 'langages-unaires'), {
+    id: 'langages-unaires', title: undefined, correction: true,
+  });
+  const catalogue = JSON.parse(readFileSync(new URL('../typst-catalogue.json', import.meta.url), 'utf8'));
+  assert.equal(catalogue.find(item => item.id === 'langages-unaires')?.titre, 'Langages unaires');
+});
+
 test('La rubrique TP publie les automates et CYK avec leur corrigé', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
   assert.deepEqual(menu.children, [
