@@ -185,3 +185,20 @@ test('La rubrique TP publie les automates et CYK avec leur corrigé', () => {
     { id: 'tp-cyk', title: undefined, correction: true },
   ]);
 });
+
+test('La rubrique Logique donne accès aux exercices de déduction naturelle', () => {
+  const root = mkdtempSync(join(tmpdir(), 'mpi-typst-logique-'));
+  try {
+    writeFileSync(join(root, 'pages-typst.md'), readFileSync(new URL('../pages-typst.md', import.meta.url)));
+    const catalogue = JSON.parse(readFileSync(new URL('../typst-catalogue.json', import.meta.url), 'utf8'));
+    generatePages(root, catalogue);
+    const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
+    assert.deepEqual(navigation.sidebars.logique.at(-1), {
+      type: 'link',
+      label: 'Exercices de déduction naturelle',
+      href: 'https://mpi-informatique.github.io/deduction-naturelle/',
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

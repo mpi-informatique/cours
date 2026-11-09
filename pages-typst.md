@@ -32,3 +32,4 @@
 - Logique
   - cours-logique-propositionnelle
   - cours-deduction-naturelle
+  - [Exercices de déduction naturelle](https://mpi-informatique.github.io/deduction-naturelle/)
