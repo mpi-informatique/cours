@@ -1,21 +1,22 @@
 {
   description = "Development environment for the MPI Informatique website";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+  inputs.environnement.url = "github:mpi-informatique/tp-environnement";
+  inputs.nixpkgs.follows = "environnement/nixpkgs";
 
-  outputs = { nixpkgs, ... }:
+  outputs = { nixpkgs, environnement, ... }:
     let
-      systems = [ "aarch64-darwin" "x86_64-darwin" "aarch64-linux" "x86_64-linux" ];
+      systems = environnement.lib.systems;
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
       devShells = forAllSystems (system:
         let
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = environnement.legacyPackages.${system}.pkgs;
         in
         {
-          default = pkgs.mkShell {
-            packages = [ pkgs.nodejs_20 ];
+          default = environnement.lib.mkShell system {
+            packages = [ pkgs.nodejs_22 ];
           };
         });
     };
