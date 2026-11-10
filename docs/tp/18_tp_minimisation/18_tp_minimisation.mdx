@@ -1,0 +1,126 @@
+---
+hide_table_of_contents: false
+hide_title: false
+cor: false
+title: "TP 18 : Minimisation d'un automate"
+description: Compresser un automate déterministe par l'algorithme de Moore
+sidebar_custom_props:
+  cor: false
+---
+
+import Solution from "@site/src/components/Solution";
+import TP from "!!raw-loader!./minimisation_cor.ml";
+
+[![Codespace](https://github.com/codespaces/badge.svg)](https://codespaces.new/mpi-informatique/tp-environnement?quickstart=1)
+
+Dans ce TP, on va **compresser** un automate déterministe : deux états qui ont exactement le même comportement seront remplacés par un seul état.
+
+Télécharger le [fichier OCaml à compléter](./minimisation.ml), puis l'exécuter après chaque question. Les assertions placées dans le fichier servent de tests.
+
+## Un automate volontairement redondant
+
+On représente un automate déterministe complet par le type suivant. Les lettres de l'alphabet sont les entiers de `0` à `Array.length delta.(0) - 1`.
+
+```ocaml
+type afdc = {
+    initial : int;
+    finaux : int list;
+    delta : int array array
+}
+```
+
+L'automate `redondant` fourni dans le fichier lit des écritures binaires. Un état `2 * r + p` mémorise :
+
+- dans `r`, le reste modulo 5 de l'entier lu ;
+- dans `p`, la parité du nombre de chiffres `1` lus.
+
+Il accepte lorsque `r = 0`. Il possède donc 10 états, alors que la seconde information ne sert pas à décider si un mot est accepté.
+
+1. Quel langage reconnaît cet automate ? Expliquer pourquoi les états `2 * r` et `2 * r + 1` devraient être fusionnés pour chaque `r` entre 0 et 4.
+
+<Solution show={frontMatter.cor}>
+
+L'automate reconnaît les écritures binaires des entiers divisibles par 5, avec d'éventuels zéros en tête. Les deux états `2 * r` et `2 * r + 1` ont le même reste `r`. À partir de ces deux états, tout suffixe produit le même nouveau reste, même si la parité du nombre de `1` peut différer. Ils acceptent donc exactement les mêmes suffixes et sont équivalents.
+
+</Solution>
+
+## Raffinement des classes
+
+On décrit une partition des états par un tableau `classes` : `classes.(q)` est le numéro de la classe de l'état `q`.
+
+Au départ, on sait seulement distinguer les états finaux des états non finaux.
+
+2. Écrire `classes_initiales : afdc -> int array`. La classe de l'état initial sera numérotée `0` et l'autre classe, si elle existe, sera numérotée `1`.
+
+<Solution file={TP} part="q2" lang="ocaml" show={frontMatter.cor} />
+
+À partir d'une partition, on associe à chaque état sa **signature** : sa classe actuelle, suivie des classes atteintes par chacune des lettres. Deux états de signatures différentes doivent être séparés.
+
+3. Écrire `signature : afdc -> int array -> int -> int list` telle que `signature a classes q` renvoie la signature de l'état `q`.
+
+Pour la partition initiale de `redondant`, on doit par exemple obtenir :
+
+```ocaml
+signature redondant initiales 0 = [0; 0; 1]
+signature redondant initiales 2 = [1; 1; 1]
+```
+
+<Solution file={TP} part="q3" lang="ocaml" show={frontMatter.cor} />
+
+4. Écrire `raffine : afdc -> int array -> int array` qui place dans une même nouvelle classe exactement les états ayant la même signature. Numéroter les classes par ordre de première apparition des signatures.
+
+<details>
+<summary>Indice</summary>
+
+On peut parcourir les états dans l'ordre et conserver une table associant chaque signature déjà rencontrée à son numéro. Les listes peuvent directement servir de clés dans une table de hachage OCaml.
+
+</details>
+
+<Solution file={TP} part="q4" lang="ocaml" show={frontMatter.cor} />
+
+Sur l'exemple, les partitions successives sont :
+
+```text
+[|0; 0; 1; 1; 1; 1; 1; 1; 1; 1|]
+[|0; 0; 1; 1; 2; 2; 1; 1; 1; 1|]
+[|0; 0; 1; 1; 2; 2; 3; 3; 4; 4|]
+```
+
+Chaque tour distingue des états grâce à des mots un peu plus longs que le tour précédent.
+
+5. Écrire `classes_equivalence : afdc -> int array` qui applique `raffine` jusqu'à ce que la partition ne change plus.
+
+<Solution file={TP} part="q5" lang="ocaml" show={frontMatter.cor} />
+
+Pourquoi l'algorithme termine-t-il ?
+
+<Solution show={frontMatter.cor}>
+
+Chaque tour conserve la partition ou sépare au moins une classe en plusieurs classes. Avec $n$ états, une partition possède au plus $n$ classes : après au plus $n-1$ séparations, elle ne peut donc plus changer.
+
+</Solution>
+
+## Construction de l'automate minimal
+
+Lorsque la partition est stable, chaque classe devient un état du nouvel automate. La transition issue d'une classe peut être calculée depuis n'importe lequel de ses représentants : la stabilité garantit que le résultat ne dépend pas du représentant choisi.
+
+6. Écrire `quotient : afdc -> int array -> afdc` qui construit l'automate quotient associé à une partition stable. On suppose que les classes sont numérotées à partir de `0`, sans trou.
+
+<Solution file={TP} part="q6" lang="ocaml" show={frontMatter.cor} />
+
+7. En déduire `minimiser : afdc -> afdc`. Vérifier que `minimiser redondant` possède 5 états et reconnaît les mêmes mots que `redondant` jusqu'à la taille 12.
+
+<Solution file={TP} part="q7" lang="ocaml" show={frontMatter.cor} />
+
+L'algorithme construit bien l'automate minimal à condition que l'automate de départ soit **accessible**, c'est-à-dire que chacun de ses états soit atteignable depuis l'état initial. C'est le cas de `redondant`. Pour un automate quelconque, on commence par supprimer ses états inaccessibles.
+
+## Bilan
+
+Pour minimiser un automate déterministe complet accessible :
+
+1. séparer les états finaux des états non finaux ;
+2. séparer les états dont les transitions conduisent vers des classes différentes ;
+3. recommencer jusqu'à stabilisation ;
+4. remplacer chaque classe par un seul état.
+
+Avec $n$ états et un alphabet de taille $p$, cette version simple de l'algorithme de Moore s'exécute en $O(pn^2)$ dans le pire cas.
