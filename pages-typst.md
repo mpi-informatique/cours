@@ -1,6 +1,6 @@
 - DS
-  - [DS 1 : Mines-Ponts 2019](doc:ds/ds1)
-  - [DM 1 : Centrale 2017 — Mots synchronisants](centrale-2017-mp-informatique): cor
+  - [DS 1 : Mines-Ponts 2019 - Morphismes](doc:ds/ds1)
+  - [DM 1 : Centrale 2017 - Mots synchronisants](centrale-2017-mp-informatique): cor
   - [DS 2 : Langages unaires](langages-unaires): cor
 - TP
   - tp-automates: cor
@@ -28,7 +28,7 @@
     - [Ambiguïté](doc:langages/grammaire/ambigue)
   - Centrale 2022
     - [Centrale 2022](doc:langages/centrale22/centrale22)
-  - [Exercices interactifs sur les automates](https://fortierq.github.io/automates)
+  - [Exercices interactifs sur les automates](https://mpi-informatique.github.io/automates)
 - Logique
   - cours-logique-propositionnelle
   - cours-deduction-naturelle
