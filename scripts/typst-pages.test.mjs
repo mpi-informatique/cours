@@ -161,7 +161,7 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
     'cours-automates', 'td-automate', 'langages/automate/poly_automate', 'langages/automate/qcm_automate',
     'cours-kleene', 'langages/kleene/qcm_kleene', 'td-kleene', 'langages/kleene/poly_kleene',
     'langages/grammaire/qcm_grammaire', 'langages/grammaire/grammaire', 'td-grammaire', 'langages/grammaire/poly_grammaire', 'langages/grammaire/ambigue',
-    'langages/centrale22/centrale22', 'https://fortierq.github.io/automates',
+    'langages/centrale22/centrale22', 'https://mpi-informatique.github.io/automates',
   ]);
   assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate', 'td-kleene']);
   assert.equal(entries.find(item => item.id === 'td-kleene').correction, true);
@@ -172,17 +172,18 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
 test('La rubrique DS publie les langages unaires avec leur corrigé', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'DS');
   assert.deepEqual(menu.children.find(item => item.id === 'langages-unaires'), {
-    id: 'langages-unaires', title: undefined, correction: true,
+    id: 'langages-unaires', title: 'DS 2 : Langages unaires', correction: true,
   });
   const catalogue = JSON.parse(readFileSync(new URL('../typst-catalogue.json', import.meta.url), 'utf8'));
   assert.equal(catalogue.find(item => item.id === 'langages-unaires')?.titre, 'Langages unaires');
 });
 
-test('La rubrique TP publie les automates et CYK avec leur corrigé', () => {
+test('La rubrique TP publie la déduction naturelle sans corrigé', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
   assert.deepEqual(menu.children, [
     { id: 'tp-automates', title: undefined, correction: true },
     { id: 'tp-cyk', title: undefined, correction: true },
+    { id: 'tp-deduction-naturelle', title: undefined, correction: false },
   ]);
 });
 

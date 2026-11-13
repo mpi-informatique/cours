@@ -310,5 +310,9 @@
   {
     "id": "ens-oral-mp-evaluation-acceleree-automates",
     "titre": "Évaluation accélérée d'automates"
+  },
+  {
+    "id": "tp-deduction-naturelle",
+    "titre": "TP 11 : Preuve automatique en déduction naturelle"
   }
 ]
