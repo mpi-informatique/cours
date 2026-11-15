@@ -152,6 +152,10 @@
     "titre": "Lemme d'Ogden"
   },
   {
+    "id": "cours-logique-premier-ordre",
+    "titre": "Logique du premier ordre"
+  },
+  {
     "id": "cours-logique-propositionnelle",
     "titre": "Logique propositionnelle (MP2I)"
   },
