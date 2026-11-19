@@ -24,7 +24,7 @@
   - Grammaire
     - [QCM - Grammaires non-contextuelles](doc:langages/grammaire/qcm_grammaire)
     - [Grammaire](doc:langages/grammaire/grammaire)
-    - td-grammaire
+    - td-grammaire: cor
     - [Résumé de cours](doc:langages/grammaire/poly_grammaire)
     - [Ambiguïté](doc:langages/grammaire/ambigue)
   - Centrale 2022
@@ -32,6 +32,7 @@
   - [Exercices interactifs sur les automates](https://mpi-informatique.github.io/automates)
 - Logique
   - cours-logique-propositionnelle
+  - [TD : Logique propositionnelle](doc:logique/td-logique-propositionnelle)
   - cours-deduction-naturelle
   - cours-logique-premier-ordre
   - [Exercices de déduction naturelle](https://mpi-informatique.github.io/deduction-naturelle/)

@@ -163,9 +163,7 @@ test('Langages conserve les documents publiés et le lien interactif', () => {
     'langages/grammaire/qcm_grammaire', 'langages/grammaire/grammaire', 'td-grammaire', 'langages/grammaire/poly_grammaire', 'langages/grammaire/ambigue',
     'langages/centrale22/centrale22', 'https://mpi-informatique.github.io/automates',
   ]);
-  assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate', 'td-kleene']);
-  assert.equal(entries.find(item => item.id === 'td-kleene').correction, true);
-  assert.equal(entries.find(item => item.id === 'td-grammaire').correction, false);
+  assert.deepEqual(entries.filter(item => item.correction).map(item => item.id), ['td-langage', 'td-automate', 'td-kleene', 'td-grammaire']);
 });
 
 
@@ -187,13 +185,18 @@ test('La rubrique TP publie la déduction naturelle sans corrigé', () => {
   ]);
 });
 
-test('La rubrique Logique donne accès aux exercices de déduction naturelle', () => {
+test('La rubrique Logique donne accès au TD et aux exercices de déduction naturelle', () => {
   const root = mkdtempSync(join(tmpdir(), 'mpi-typst-logique-'));
   try {
     writeFileSync(join(root, 'pages-typst.md'), readFileSync(new URL('../pages-typst.md', import.meta.url)));
     const catalogue = JSON.parse(readFileSync(new URL('../typst-catalogue.json', import.meta.url), 'utf8'));
     generatePages(root, catalogue);
     const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
+    assert.deepEqual(navigation.sidebars.logique[1], {
+      type: 'doc',
+      label: 'TD : Logique propositionnelle',
+      id: 'logique/td-logique-propositionnelle',
+    });
     assert.deepEqual(navigation.sidebars.logique.at(-1), {
       type: 'link',
       label: 'Exercices de déduction naturelle',
