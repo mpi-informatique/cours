@@ -32,7 +32,7 @@
   - [Exercices interactifs sur les automates](https://mpi-informatique.github.io/automates)
 - Logique
   - cours-logique-propositionnelle
-  - [TD : Logique propositionnelle](doc:logique/td-logique-propositionnelle)
+  - td-logique-propositionnelle
   - cours-deduction-naturelle
   - cours-logique-premier-ordre
   - [Exercices de déduction naturelle](https://mpi-informatique.github.io/deduction-naturelle/)

@@ -7,6 +7,10 @@
 - Employer « taille » pour le nombre de lettres d'un mot, y compris pour ses préfixes, suffixes et facteurs.
 - Préserver les fichiers existants et ne modifier que les éléments nécessaires à la demande.
 
+## Travaux dirigés
+
+- Ajouter chaque TD à `pages-typst.md` par l’identifiant de son fichier Typst dans la banque d’exercices. Ajouter `: cor` pour afficher le corrigé sur le site de cours.
+
 ## Travaux pratiques
 
 - Dans un TP, placer la solution de chaque question immédiatement après cette question.

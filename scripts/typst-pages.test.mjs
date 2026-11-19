@@ -194,9 +194,10 @@ test('La rubrique Logique donne accès au TD et aux exercices de déduction natu
     const navigation = JSON.parse(readFileSync(join(root, 'docs/typst/navigation.json'), 'utf8'));
     assert.deepEqual(navigation.sidebars.logique[1], {
       type: 'doc',
-      label: 'TD : Logique propositionnelle',
-      id: 'logique/td-logique-propositionnelle',
+      id: 'typst/logique/td-logique-propositionnelle',
     });
+    const td = readFileSync(join(root, 'docs/typst/logique/td-logique-propositionnelle.mdx'), 'utf8');
+    assert.match(td, /<TypstPdf id=\{"td-logique-propositionnelle"\} .* correction=\{false\}/);
     assert.deepEqual(navigation.sidebars.logique.at(-1), {
       type: 'link',
       label: 'Exercices de déduction naturelle',

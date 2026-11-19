@@ -264,6 +264,10 @@
     "titre": "TD : Langages réguliers"
   },
   {
+    "id": "td-logique-propositionnelle",
+    "titre": "TD : Logique propositionnelle"
+  },
+  {
     "id": "td-kleene",
     "titre": "TD : Théorème de Kleene"
   },
