@@ -5,7 +5,7 @@
 - TP
   - tp-automates: cor
   - tp-cyk: cor
-  - tp-deduction-naturelle
+  - tp-deduction-naturelle: cor
 - Langages
   - Langages réguliers
     - cours-langages
