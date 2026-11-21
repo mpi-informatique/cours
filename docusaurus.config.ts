@@ -162,6 +162,11 @@ const config: Config = {
           label: "Révisions",
         },
         {
+          type: "doc",
+          docId: "liens/liens",
+          label: "Liens",
+        },
+        {
           href: "https://prepas.org/index.php?document=73",
           label: "Programme",
           position: "right",

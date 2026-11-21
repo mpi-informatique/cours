@@ -1,0 +1,15 @@
+- Général
+    - [Software Foundations](https://softwarefoundations.cis.upenn.edu)
+    - [Mathematical Foundations of Computing, Stanford](https://web.stanford.edu/class/archive/cs/cs103/cs103.1256)
+- Algorithmique
+    - [Algorithms, Erickson](https://jeffe.cs.illinois.edu/teaching/algorithms)
+    - [Introduction to Algorithms, MIT](https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY)
+    - [Advanced Data Structures, MIT](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf)
+    - [Structures de données persistantes, Leroy](https://www.college-de-france.fr/fr/agenda/seminaire/structures-de-donnees-persistantes)
+- Logique
+    - [Programmer pour démontrer, Leroy](https://www.college-de-france.fr/fr/agenda/cours/programmer-demontrer-la-correspondance-de-curry-howard-aujourd-hui)
+    - [Software Foundations in Coq, Clarkson](https://www.youtube.com/playlist?list=PLre5AT9JnKShFK9l9HYzkZugkJSsXioFs)
+- Programmation
+    - [Equivalences de programmes, Leroy](https://www.college-de-france.fr/fr/agenda/cours/equivalences-de-programmes)
+    - [OCaml Programming: Correct + Efficient + Beautiful, Clarkson](https://cs3110.github.io/textbook/)
+    - [Sémantiques mécanisées, Leroy](https://www.college-de-france.fr/fr/agenda/cours/semantiques-mecanisees-quand-la-machine-raisonne-sur-ses-langages)
