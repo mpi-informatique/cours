@@ -80,6 +80,10 @@
     "titre": "Dominance diagonale stricte"
   },
   {
+    "id": "cours-decidabilite",
+    "titre": "Décidabilité"
+  },
+  {
     "id": "cours-deduction-naturelle",
     "titre": "Déduction naturelle"
   },
@@ -280,6 +284,10 @@
     "titre": "TP 4 : Algorithme CYK (Cocke-Younger-Kasami)"
   },
   {
+    "id": "tp-deduction-naturelle",
+    "titre": "TP 5 : Preuve automatique en déduction naturelle"
+  },
+  {
     "id": "tp-automates",
     "titre": "TP Automates"
   },
@@ -318,9 +326,5 @@
   {
     "id": "ens-oral-mp-evaluation-acceleree-automates",
     "titre": "Évaluation accélérée d'automates"
-  },
-  {
-    "id": "tp-deduction-naturelle",
-    "titre": "TP 5 : Preuve automatique en déduction naturelle"
   }
 ]
