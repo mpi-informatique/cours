@@ -36,5 +36,5 @@
   - cours-deduction-naturelle
   - cours-logique-premier-ordre
   - [Exercices de déduction naturelle](https://mpi-informatique.github.io/deduction-naturelle/)
-- Décidabilité
-  - cours-decidabilite: cor
+- Algorithmique
+  - cours-decidabilite
