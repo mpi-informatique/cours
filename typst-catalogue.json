@@ -12,8 +12,20 @@
     "titre": "Ambiguïté et langages réguliers"
   },
   {
+    "id": "arbres-decision",
+    "titre": "Arbres de décision et fonctions booléennes"
+  },
+  {
+    "id": "centrale-2022-mp-informatique",
+    "titre": "Automate de Brzozowski et dérivées d'Antimirov"
+  },
+  {
     "id": "cours-automates",
     "titre": "Automates"
+  },
+  {
+    "id": "automates-valuations",
+    "titre": "Automates de valuations et ordre des variables"
   },
   {
     "id": "ens-oral-mp-automates-monoides",
@@ -28,6 +40,10 @@
     "titre": "Automates et palindromes"
   },
   {
+    "id": "automates-pile",
+    "titre": "Automates à pile"
+  },
+  {
     "id": "ens-oral-mp-automates-pile-pompage",
     "titre": "Automates à pile et lemme de pompage"
   },
@@ -36,8 +52,16 @@
     "titre": "Calcul de puissances par diagonalisation"
   },
   {
+    "id": "calcul-propositionnel",
+    "titre": "Calcul propositionnel"
+  },
+  {
     "id": "determinant-fonction-affine",
     "titre": "Calcul à l'aide d'une fonction affine"
+  },
+  {
+    "id": "serie-exponentielle-logarithme",
+    "titre": "Ce qui se passe près de zéro"
   },
   {
     "id": "centraliseur-langage",
@@ -64,6 +88,38 @@
     "titre": "Commuter avec un spectre simple"
   },
   {
+    "id": "serie-arctangente-compensee",
+    "titre": "Compenser un terme divergent"
+  },
+  {
+    "id": "sinus-sur-t",
+    "titre": "Convergence sans convergence absolue"
+  },
+  {
+    "id": "serie-telescopique-logarithmes",
+    "titre": "Des fractions à une série de logarithmes"
+  },
+  {
+    "id": "pics-integrables-non-bornes",
+    "titre": "Des pics de plus en plus hauts"
+  },
+  {
+    "id": "serie-restes-sur-demi-droite",
+    "titre": "Des restes loin de zéro"
+  },
+  {
+    "id": "integrale-deux-bornes-racine",
+    "titre": "Deux bornes à examiner"
+  },
+  {
+    "id": "distance-ferme-compact",
+    "titre": "Deux fermés peuvent se rapprocher sans se toucher"
+  },
+  {
+    "id": "difference-fractions-simples",
+    "titre": "Deux termes divergents, une différence convergente"
+  },
+  {
     "id": "diagonalisabilite-rang-un-trace",
     "titre": "Diagonalisabilité en rang un"
   },
@@ -80,12 +136,20 @@
     "titre": "Dominance diagonale stricte"
   },
   {
+    "id": "grammaire-rapport-lettres",
+    "titre": "Double inclusion et ambiguïté d'une grammaire"
+  },
+  {
     "id": "cours-decidabilite",
     "titre": "Décidabilité"
   },
   {
     "id": "cours-deduction-naturelle",
     "titre": "Déduction naturelle"
+  },
+  {
+    "id": "serie-alternee-parametre",
+    "titre": "Dériver une série seulement uniformément convergente"
   },
   {
     "id": "antisymetrique",
@@ -116,8 +180,8 @@
     "titre": "Endomorphisme de carré moins l'identité"
   },
   {
-    "id": "ensembles-distinguants-automates",
-    "titre": "Ensemble distinguant"
+    "id": "residuels-minimisation",
+    "titre": "Ensembles distinguants, résiduels et minimisation"
   },
   {
     "id": "ensembles-inevitables",
@@ -128,12 +192,56 @@
     "titre": "Exemples de langages réguliers"
   },
   {
-    "id": "forme-normale-chomsky",
-    "titre": "Forme normale de Chomsky et reconnaissance"
+    "id": "fonction-takagi",
+    "titre": "Fonction de Takagi"
   },
   {
-    "id": "grammaires-lineaires",
-    "titre": "Grammaires linéaires"
+    "id": "serie-dirichlet-alternee",
+    "titre": "Fonction êta de Dirichlet"
+  },
+  {
+    "id": "forme-normale-chomsky",
+    "titre": "Forme normale de Chomsky"
+  },
+  {
+    "id": "formes-normales-tseitin",
+    "titre": "Formes normales et variables auxiliaires"
+  },
+  {
+    "id": "formules-propositionnelles-croissantes",
+    "titre": "Formules propositionnelles croissantes"
+  },
+  {
+    "id": "grammaires-lineaires-droite-gauche",
+    "titre": "Grammaires linéaires à droite et à gauche"
+  },
+  {
+    "id": "deduction-implication-negation",
+    "titre": "Implication, négation et correction"
+  },
+  {
+    "id": "intersection-grammaire-ogden",
+    "titre": "Intersection et lemme d'Ogden"
+  },
+  {
+    "id": "integrale-cosinus-exponentielle",
+    "titre": "Intégration par convergence dominée des sommes partielles"
+  },
+  {
+    "id": "normes-polynomes-degre",
+    "titre": "L'équivalence des normes dépend du degré"
+  },
+  {
+    "id": "suite-normes-valeurs-adherence",
+    "titre": "La norme converge, mais pas le vecteur"
+  },
+  {
+    "id": "somme-diagonalisables",
+    "titre": "La somme peut perdre la diagonalisabilité"
+  },
+  {
+    "id": "evaluation-normes-integrale-sup",
+    "titre": "La valeur en un point dépend de la norme"
   },
   {
     "id": "langages-locaux-glushkov",
@@ -152,8 +260,8 @@
     "titre": "Langages unaires"
   },
   {
-    "id": "pompage-intersection-complementaire",
-    "titre": "Lemme d'Ogden"
+    "id": "seuil-logarithmique",
+    "titre": "Le logarithme décide au seuil"
   },
   {
     "id": "cours-logique-premier-ordre",
@@ -161,11 +269,19 @@
   },
   {
     "id": "cours-logique-propositionnelle",
-    "titre": "Logique propositionnelle (MP2I)"
+    "titre": "Logique propositionnelle – MP2I"
   },
   {
-    "id": "miroir-langage-non-contextuel",
-    "titre": "Miroir d'un langage non-contextuel"
+    "id": "deduction-peirce-double-negation",
+    "titre": "Loi de Peirce et logique intuitionniste"
+  },
+  {
+    "id": "norme-echantillons-polynomes",
+    "titre": "Mesurer un polynôme par ses valeurs"
+  },
+  {
+    "id": "tp-minimisation-automate",
+    "titre": "Minimisation d'un automate"
   },
   {
     "id": "mines-ponts-2019-mp-informatique",
@@ -200,12 +316,16 @@
     "titre": "Nombre minimal d'arcs à ajouter pour rendre un graphe fortement connexe"
   },
   {
-    "id": "centrale-2022-mp-informatique",
-    "titre": "Option informatique"
+    "id": "reste-gaussien",
+    "titre": "Où se concentre un reste ?"
   },
   {
     "id": "palindromes-et-rationalite",
     "titre": "Palindromes et régularité"
+  },
+  {
+    "id": "integration-equivalents-restes",
+    "titre": "Quel intervalle faut-il intégrer ?"
   },
   {
     "id": "racine-langage",
@@ -216,8 +336,8 @@
     "titre": "Reconnaissable ou non ?"
   },
   {
-    "id": "td-reduction",
-    "titre": "Réduction"
+    "id": "reciproque-lemme-etoile",
+    "titre": "Réciproque du lemme de l'étoile"
   },
   {
     "id": "reduction-endomorphisme-rang-un",
@@ -228,12 +348,16 @@
     "titre": "Réparation de mots pour un langage régulier"
   },
   {
-    "id": "residuels-minimisation",
-    "titre": "Résiduels et minimisation d'automate"
+    "id": "clauses-satisfaites",
+    "titre": "Satisfaire beaucoup de clauses"
   },
   {
     "id": "monoides-libres-codes",
     "titre": "Sous-monoïdes de mots et codes"
+  },
+  {
+    "id": "difference-integrales-divergentes",
+    "titre": "Soustraire avant de comparer"
   },
   {
     "id": "spectre-rotation-plan",
@@ -248,6 +372,10 @@
     "titre": "Sujet 0 CCINP"
   },
   {
+    "id": "systemes-connecteurs",
+    "titre": "Système complet de connecteurs"
+  },
+  {
     "id": "semantique-ouverts",
     "titre": "Sémantique des ouverts et incomplétude de la logique intuitionniste"
   },
@@ -257,23 +385,23 @@
   },
   {
     "id": "td-automate",
-    "titre": "TD : Automates"
+    "titre": "TD – Automates"
   },
   {
     "id": "td-grammaire",
-    "titre": "TD : Grammaires"
+    "titre": "TD – Grammaires"
   },
   {
     "id": "td-langage",
-    "titre": "TD : Langages réguliers"
+    "titre": "TD – Langages réguliers"
   },
   {
     "id": "td-logique-propositionnelle",
-    "titre": "TD : Logique propositionnelle"
+    "titre": "TD – Logique propositionnelle"
   },
   {
     "id": "td-kleene",
-    "titre": "TD : Théorème de Kleene"
+    "titre": "TD – Théorème de Kleene"
   },
   {
     "id": "cours-kleene",
@@ -281,15 +409,19 @@
   },
   {
     "id": "tp-cyk",
-    "titre": "TP 4 : Algorithme CYK (Cocke-Younger-Kasami)"
+    "titre": "TP 4 – Algorithme CYK"
   },
   {
     "id": "tp-deduction-naturelle",
-    "titre": "TP 5 : Preuve automatique en déduction naturelle"
+    "titre": "TP 5 – Preuve automatique en déduction naturelle"
+  },
+  {
+    "id": "tp-inference-type",
+    "titre": "TP 6 – Inférence de type"
   },
   {
     "id": "tp-automates",
-    "titre": "TP Automates"
+    "titre": "TP – Automates"
   },
   {
     "id": "langages-engendres-grammaires",
@@ -300,8 +432,16 @@
     "titre": "Trouver une grammaire"
   },
   {
+    "id": "difference-exponentielles-encadrements",
+    "titre": "Un calcul par encadrements"
+  },
+  {
     "id": "nilpotence-commutateur",
     "titre": "Un commutateur impose la nilpotence"
+  },
+  {
+    "id": "endomorphisme-carre-nul-dimension-trois",
+    "titre": "Un endomorphisme de carré nul"
   },
   {
     "id": "reduction-derivation-polynomes-decalee",
@@ -312,12 +452,92 @@
     "titre": "Un endomorphisme de suites"
   },
   {
+    "id": "reste-logarithmique",
+    "titre": "Un logarithme à l'infini"
+  },
+  {
+    "id": "hyperbole-minimum-distance",
+    "titre": "Un minimum sur un ensemble non compact"
+  },
+  {
+    "id": "pic-exponentiel-mobile",
+    "titre": "Un pic qui se rapproche de zéro"
+  },
+  {
+    "id": "aire-signee-nulle",
+    "titre": "Une aire peut en cacher une autre"
+  },
+  {
+    "id": "isometrie-compact-surjective",
+    "titre": "Une application rigide d'un compact dans lui-même"
+  },
+  {
+    "id": "norme-parallelogramme",
+    "titre": "Une boule en parallélogramme"
+  },
+  {
+    "id": "integrale-exponentielle-logarithme",
+    "titre": "Une exponentielle déguisée"
+  },
+  {
+    "id": "recurrence-integrales-racine",
+    "titre": "Une famille d'intégrales sans primitive à chercher"
+  },
+  {
+    "id": "lissage-valeur-absolue",
+    "titre": "Une limite avec un angle"
+  },
+  {
     "id": "diagonalisation-matrice-deux",
     "titre": "Une première diagonalisation"
   },
   {
+    "id": "puissances-amorties",
+    "titre": "Une puissance amortie"
+  },
+  {
+    "id": "singularite-logarithmique",
+    "titre": "Une singularité logarithmique"
+  },
+  {
+    "id": "serie-exponentielle-integrable",
+    "titre": "Une somme continue qui perd la dérivabilité"
+  },
+  {
+    "id": "serie-trigonometrique-moyenne",
+    "titre": "Une somme périodique de moyenne nulle"
+  },
+  {
+    "id": "serie-harmonique-parametre",
+    "titre": "Une somme qui retrouve les nombres harmoniques"
+  },
+  {
+    "id": "suite-exponentielles-separees",
+    "titre": "Une suite bornée dont les termes restent éloignés"
+  },
+  {
+    "id": "symetrie-inversion-logarithme",
+    "titre": "Une symétrie par inversion"
+  },
+  {
+    "id": "symetrie-polynomes",
+    "titre": "Une symétrie sur les polynômes"
+  },
+  {
+    "id": "serie-geometrique-integration",
+    "titre": "Une série géométrique sur un segment"
+  },
+  {
+    "id": "norme-valeur-derivee",
+    "titre": "Une valeur et une dérivée pour mesurer une fonction"
+  },
+  {
     "id": "diagonalisabilite-triangulaire-parametres",
     "titre": "Une valeur propre double"
+  },
+  {
+    "id": "serie-logarithme-alternee",
+    "titre": "Uniforme sans être normale"
   },
   {
     "id": "hors-diagonale-un",

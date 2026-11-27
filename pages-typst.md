@@ -6,6 +6,7 @@
   - tp-automates: cor
   - tp-cyk: cor
   - tp-deduction-naturelle: cor
+  - tp-inference-type: cor
 - Langages
   - Langages réguliers
     - cours-langages

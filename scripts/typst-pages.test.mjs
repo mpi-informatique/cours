@@ -176,12 +176,13 @@ test('La rubrique DS publie les langages unaires avec leur corrigé', () => {
   assert.equal(catalogue.find(item => item.id === 'langages-unaires')?.titre, 'Langages unaires');
 });
 
-test('La rubrique TP publie la déduction naturelle avec son corrigé', () => {
+test('La rubrique TP publie la déduction naturelle et l’inférence de type avec leurs corrigés', () => {
   const menu = parsePages(readFileSync(new URL('../pages-typst.md', import.meta.url), 'utf8')).find(item => item.title === 'TP');
   assert.deepEqual(menu.children, [
     { id: 'tp-automates', title: undefined, correction: true },
     { id: 'tp-cyk', title: undefined, correction: true },
     { id: 'tp-deduction-naturelle', title: undefined, correction: true },
+    { id: 'tp-inference-type', title: undefined, correction: true },
   ]);
 });
 
